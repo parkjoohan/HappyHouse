@@ -13,6 +13,8 @@ import NoticeWrite from "@/components/notice/NoticeWrite.vue";
 import NoticeUpdate from "@/components/notice/NoticeUpdate.vue";
 import NoticeDelete from "@/components/notice/NoticeDelete.vue";
 
+import House from "@/views/House.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -70,6 +72,11 @@ const routes = [
         component: NoticeDelete,
       },
     ],
+  },
+  {
+    path: "/house",
+    name: "House",
+    component: House,
   },
 ];
 

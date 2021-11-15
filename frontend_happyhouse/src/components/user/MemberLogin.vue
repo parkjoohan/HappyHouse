@@ -1,73 +1,77 @@
 <template>
-  <v-container class="bv-example-row">
-    <v-row>
-      <v-col></v-col>
-      <v-col cols="8">
-        <v-card
-          class="mt-3"
-          header="로그인"
-          style="max-width: 40rem"
-          align="left"
-        >
-          <v-form>
-            <v-form>
-              <v-text-field
+  <b-container class="bv-example-row mt-3">
+    <b-row>
+      <b-col>
+        <b-alert variant="secondary" show><h3>로그인</h3></b-alert>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col></b-col>
+      <b-col cols="8">
+        <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
+          <b-form class="text-left">
+            <b-alert show variant="danger" v-if="isLoginError"
+              >아이디 또는 비밀번호를 확인하세요.</b-alert
+            >
+            <b-form-group label="아이디:" label-for="userid">
+              <b-form-input
                 id="userid"
                 v-model="user.userid"
-                label="Input your ID"
-              ></v-text-field>
-            </v-form>
-            <v-form>
-              <v-text-field
+                required
+                placeholder="아이디 입력...."
+                @keyup.enter="confirm"
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group label="비밀번호:" label-for="userpwd">
+              <b-form-input
                 type="password"
                 id="userpwd"
                 v-model="user.userpwd"
-                label="Input your PW"
-                @keypress.enter="login"
-              ></v-text-field>
-            </v-form>
-            <v-btn type="btn" variant="primary" class="m-1" @click="login"
-              >로그인</v-btn
+                required
+                placeholder="비밀번호 입력...."
+                @keyup.enter="confirm"
+              ></b-form-input>
+            </b-form-group>
+            <b-button
+              type="button"
+              variant="primary"
+              class="m-1"
+              @click="confirm"
+              >로그인</b-button
             >
-            <v-btn type="btn" variant="success" class="m-1">회원가입</v-btn>
-          </v-form>
-        </v-card>
-      </v-col>
-      <v-col></v-col>
-    </v-row>
-  </v-container>
+            <b-button
+              type="button"
+              variant="success"
+              class="m-1"
+              @click="movePage"
+              >회원가입</b-button
+            >
+          </b-form>
+        </b-card>
+      </b-col>
+      <b-col></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-import Vue from "vue";
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
-
 export default {
-  name: "Login",
-  data: function () {
+  name: "MemberLogin",
+  data() {
     return {
+      isLoginError: false,
       user: {
         userid: "",
         userpwd: "",
       },
-      message: "",
     };
   },
-  computed: {
-    nextRoute() {
-      return this.$route.params.nextRoute ? this.$route.params.nextRoute : "";
-    },
-  },
   methods: {
-    login: function () {
-      // LOGIN 액션 실행
-      // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
-      this.$store
-        .dispatch("LOGIN", this.user)
-        .then(() => this.$router.replace(`/${this.nextRoute}`))
-        .catch(({ message }) => (this.msg = message));
+    confirm() {
+      alert("로그인!!!");
+    },
+    movePage() {
+      this.$router.push({ name: "SignUp" });
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <container class="bv-example-row mt-3 text-center">
+  <div class="bv-example-row mt-3 text-center">
     <h5 class="title">Find Us</h5>
     <ul>
       (SSAFY 광주교육장) 광주광역시 광산구 하남산단6번로 107<br />
@@ -21,7 +21,7 @@
       </div>
     </div>
     <!-- .subfooter end -->
-  </container>
+  </div>
 </template>
 
 <script>
