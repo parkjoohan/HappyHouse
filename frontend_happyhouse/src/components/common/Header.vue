@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="light" variant="primary">
+    <b-navbar toggleable="lg" type="primary" variant="light">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
@@ -12,7 +12,9 @@
         </router-link>
       </b-navbar-brand>
 
-      <b-collapse is-nav>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
