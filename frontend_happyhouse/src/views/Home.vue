@@ -1,36 +1,47 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h2 class="underline-steelblue">
-      <b-icon icon="house"></b-icon> MY SWEET HOME
-      <b-icon icon="house"></b-icon>
-    </h2>
-
-    <div class="carousel-item">
-      <img src="..." alt="..." />
-      <div class="carousel-caption d-none d-md-block">
-        <h5>...</h5>
-        <p>...</p>
-      </div>
-    </div>
-  </b-container>
+  <div>
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="480"
+      style="text-shadow: 1px 1px 2px #333"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Text slides with image -->
+      <b-carousel-slide
+        caption="서울"
+        text="I · SEOUL · U"
+        :img-src="require(`@/assets/1.jpg`)"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="광주"
+        text="SSAFY의 중심지!!"
+        :img-src="require(`@/assets/2.jpg`)"
+      ></b-carousel-slide>
+      <b-carousel-slide
+        caption="부산"
+        text="바다와 먹거리의 중심!"
+        :img-src="require(`@/assets/3.jpg`)"
+      ></b-carousel-slide>
+    </b-carousel>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Main",
-  props: {
-    msg: String,
+  data() {
+    return {
+      slide: 0,
+      sliding: null,
+    };
   },
 };
 </script>
 
-<style scoped>
-.underline-steelblue {
-  display: inline-block;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 70%,
-    rgba(72, 190, 233, 0.3) 30%
-  );
-}
-</style>
+<style></style>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.MemberMapper">
+
+	<!-- 회원가입 -->
+	<insert id="registerMember" parameterType="MemberDto">
+		insert into hh_member (userid, userpwd, username, useraddress, userphone)
+		values (#{userId}, #{userPwd}, #{userName}, #{userAddress}, #{userPhone})
+	</insert>
+	
+	<!-- idCheck -->
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(userid)
+		from hh_member
+		where userid = #{id}
+	</select>
+	
+	<!-- 회원 정보 -->
+	<select id="getMember" parameterType="String" resultType="MemberDto">
+		select * from hh_member
+		where userid = #{userId}
+	</select>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="modifyInfo" parameterType="MemberDto">
+		update hh_member
+		set userpwd=#{userPwd}, username=#{userName}, useraddress=#{userAddress}, userphone=#{userPhone}
+		where userid=#{userId}
+	</update>
+	
+	<!-- 회원 정보 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		delete from hh_member
+		where userid = #{userId}
+	</delete>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="map" resultType="MemberDto">
+		select userid, username
+		from hh_member
+		where userid = #{userid} and userpwd = #{userpwd}
+	</select>
+</mapper>
