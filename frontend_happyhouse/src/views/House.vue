@@ -1,25 +1,27 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-orange">
-      <b-icon icon="house-fill"></b-icon> House Service
-    </h3>
-    <b-row>
+  <div>
+    <b-container class="bv-example-row mt-3 text-center">
+      <h3 class="underline-orange">
+        <b-icon icon="house-fill"></b-icon> House Service
+      </h3>
+
       <kakao-map></kakao-map>
-    </b-row>
-    <b-row>
-      <b-col>
-        <house-search-bar></house-search-bar>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="6" align="left">
-        <house-list />
-      </b-col>
-      <b-col cols="6">
-        <house-detail />
-      </b-col>
-    </b-row>
-  </b-container>
+
+      <b-row>
+        <b-col>
+          <house-search-bar></house-search-bar>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col cols="6" align="left">
+          <house-list />
+        </b-col>
+        <b-col cols="6">
+          <house-detail />
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 <script>
 import KakaoMap from "@/components/map/KakaoMap.vue";
