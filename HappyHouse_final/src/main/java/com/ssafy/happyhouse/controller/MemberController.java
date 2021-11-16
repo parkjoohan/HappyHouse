@@ -69,17 +69,16 @@ public class MemberController {
 		}
 		return new ResponseEntity<>(FAIL, HttpStatus.NO_CONTENT);
 	}
-
-	@ApiOperation(value = "아이디 사용 가능 여부. 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	
+	@ApiOperation(value = "아이디 사용 가능 여부(존재하는 해당 아이디 개수 : 0 또는 1)")
 	@GetMapping("idCheck/{checkId}")
-	public ResponseEntity<String> idCheck(@PathVariable String checkId){
+	public ResponseEntity<Map<String, String>> idCheck2(@PathVariable String checkId){
 		logger.debug("idCheck - 호출");
 		int idCount = memberService.idCheck(checkId);
-		System.out.println("id개수:"+ idCount);
-		if(idCount == 0) {
-			return new ResponseEntity<>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(FAIL, HttpStatus.NO_CONTENT);	
+		System.out.println("id개수("+ checkId +"): " +idCount);
+		Map<String, String> map = new HashMap<>();
+		map.put("idcount", Integer.toString(idCount));
+		return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "로그인한 회원 정보를 반환한다.", response = MemberDto.class)
