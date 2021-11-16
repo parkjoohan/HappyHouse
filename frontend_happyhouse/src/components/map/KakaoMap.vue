@@ -17,7 +17,7 @@
             float: left;
             padding: 12px 9px;
             list-style: none;
-            font-size: 20px;
+            font-size: 15px;
             line-height: 1.5;
             position: absolute;
           "
@@ -85,10 +85,11 @@ export default {
     initMap() {
       this.container = document.getElementById("map");
       var options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 6,
+        center: new kakao.maps.LatLng(35.16019989313708, 126.85155252952333),
+        level: 8,
       };
-      map = new kakao.maps.Map(this.container, options);
+
+      this.map = new kakao.maps.Map(this.container, options);
       //마커추가하려면 객체를 아래와 같이 하나 만든다.
       var marker = new kakao.maps.Marker({
         position: map.getCenter(),
@@ -296,7 +297,7 @@ export default {
     displayPagination() {},
     displayInfoWindow(marker, place, position) {
       const content =
-        '<div id="infowindow", style="width:180px;height:200px;padding:15px 10px;">' +
+        '<div id="infowindow", style="width:180px;height:100px;padding:15px 10px;">' +
         '<span id="placeinfo">' +
         place.place_name +
         "<p>" +
@@ -306,7 +307,6 @@ export default {
         place.address_name +
         "</p>" +
         "</span>" +
-        '<button type="button">닫기</button>' +
         "</div>";
       let infowindow = new kakao.maps.InfoWindow({
         position,

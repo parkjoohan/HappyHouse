@@ -4,7 +4,7 @@
       <h3 class="underline-orange">
         <b-icon icon="house-fill"></b-icon> House Service
       </h3>
-      <kakao-map></kakao-map>
+      <kakao-map></kakao-map><br /><br /><br />
       <b-row>
         <b-col>
           <house-search-bar></house-search-bar>
