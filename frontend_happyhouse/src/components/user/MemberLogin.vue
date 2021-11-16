@@ -19,7 +19,6 @@
                 v-model="user.userid"
                 required
                 placeholder="아이디 입력...."
-                @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
             <b-form-group label="비밀번호:" label-for="userpwd">
@@ -29,14 +28,9 @@
                 v-model="user.userpwd"
                 required
                 placeholder="비밀번호 입력...."
-                @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <b-button
-              type="button"
-              variant="primary"
-              class="m-1"
-              @click="confirm"
+            <b-button type="button" variant="primary" class="m-1" @click="login"
               >로그인</b-button
             >
             <b-button
@@ -55,6 +49,8 @@
 </template>
 
 <script>
+import http from "@/util/http-common";
+
 export default {
   name: "MemberLogin",
   data() {
@@ -67,8 +63,26 @@ export default {
     };
   },
   methods: {
-    confirm() {
-      alert("로그인!!!");
+    login() {
+      window.sessionStorage.setItem("login-token", "");
+      const body = {
+        userId: this.user.userid,
+        userPwd: this.user.userpwd,
+      };
+      http
+        .post(`/user/login`, JSON.stringify(body))
+        .then(({ data }) => {
+          console.log(data);
+          if (data.message == "success") {
+            console.log("로그인 성공");
+            window.sessionStorage.setItem("login-token", data.token);
+          } else {
+            alert("로그인 실패");
+          }
+        })
+        .catch(() => {
+          alert("로그인 실패");
+        });
     },
     movePage() {
       this.$router.push({ name: "SignUp" });

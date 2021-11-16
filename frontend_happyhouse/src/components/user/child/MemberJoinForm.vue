@@ -16,7 +16,7 @@
             placeholder="아이디 입력..."
             @keyup="idCheck"
           ></b-form-input>
-          <h6>{{ idresult }}</h6>
+          <div id="idresult" class="mt-1">{{ idresult }}</div>
         </b-form-group>
 
         <b-form-group
@@ -134,7 +134,7 @@ export default {
     },
     registerMember() {
       http
-        .post(`/user`, {
+        .post(`/user/join`, {
           userId: this.user.userId,
           userPwd: this.user.userPwd,
           userName: this.user.userName,
