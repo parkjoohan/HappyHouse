@@ -292,7 +292,7 @@ export default {
       });
       kakao.maps.event.addListener(marker, "click", () => {
         this.displayInfoWindow(marker, place, position);
-        this.map.panTo(position);
+        map.panTo(position);
       });
     },
     displayPagination() {},
@@ -314,7 +314,7 @@ export default {
         content,
         removable: true,
       });
-      infowindow.setMap(this.map);
+      infowindow.setMap(map);
     },
     removeAllChildNode(el) {
       // console.log(el)
