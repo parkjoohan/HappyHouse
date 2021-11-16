@@ -89,7 +89,7 @@ export default {
         level: 8,
       };
 
-      this.map = new kakao.maps.Map(this.container, options);
+      map = new kakao.maps.Map(this.container, options);
       //마커추가하려면 객체를 아래와 같이 하나 만든다.
       var marker = new kakao.maps.Marker({
         position: map.getCenter(),
@@ -216,6 +216,7 @@ export default {
       });
     },
 
+    // 키워드 검색
     addKakaoMapScript() {
       const script = document.createElement("script");
       script.onload = () => kakao.maps.load(this.initMap);
@@ -253,7 +254,7 @@ export default {
       }
       listEl.appendChild(fragment);
       menuEl.scrollTop = 0;
-      this.map.setBounds(bounds);
+      map.setBounds(bounds);
     },
     getListItem(index, places) {
       const el = document.createElement("id");
@@ -286,7 +287,7 @@ export default {
       // var let 으로 하면 인포윈도우 안됨
       const position = new kakao.maps.LatLng(place.y, place.x);
       const marker = new kakao.maps.Marker({
-        map: this.map,
+        map: map,
         position,
       });
       kakao.maps.event.addListener(marker, "click", () => {
