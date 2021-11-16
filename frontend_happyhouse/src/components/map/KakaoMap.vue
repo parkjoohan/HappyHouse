@@ -1,24 +1,62 @@
 <template>
-  <!-- 카카오맵 Vue -->
   <div>
-    <div id="map" style="width: 100%; height: 500px"></div>
-    <div hidden>
-      {{ aptlist }}
+    <!-- 카카오맵 Vue -->
+    <div class="map_wrap">
+      <div
+        id="map"
+        class="map"
+        style="width: 100%; height: 100%; position: relative; overflow: hidden"
+      ></div>
+      <div id="menu_wrap">
+        <input type="text" id="keyword" v-model="keyword" />
+        <button v-on:click="searching">검색</button>
+        <ul
+          id="menu"
+          style="
+            margin-left: -1px;
+            float: left;
+            padding: 12px 9px;
+            list-style: none;
+            font-size: 20px;
+            line-height: 1.5;
+            position: absolute;
+          "
+        >
+          <li id="search.tab1">
+            <a href="#"></a>
+          </li>
+          <li id="search.tab2"><a href="#"></a></li>
+        </ul>
+        <ul
+          id="placesList"
+          style="
+            margin-left: -1px;
+            float: left;
+            padding: 12px 9px;
+            list-style: none;
+          "
+        ></ul>
+        <div id="pagination"></div>
+      </div>
+
+      <div hidden>
+        {{ aptlist }}
+      </div>
+      <p>
+        <input
+          type="checkbox"
+          id="chkUseDistrict"
+          @click="setOverlayMapTypeId()"
+        />
+        지적편집도 정보 보기
+        <input type="checkbox" id="chkTerrain" @click="setOverlayMapTypeId()" />
+        지형정보 보기
+        <input type="checkbox" id="chkTraffic" @click="setOverlayMapTypeId()" />
+        교통정보 보기
+        <input type="checkbox" id="chkBicycle" @click="setOverlayMapTypeId()" />
+        자전거도로 정보 보기
+      </p>
     </div>
-    <p>
-      <input
-        type="checkbox"
-        id="chkUseDistrict"
-        @click="setOverlayMapTypeId()"
-      />
-      지적편집도 정보 보기
-      <input type="checkbox" id="chkTerrain" @click="setOverlayMapTypeId()" />
-      지형정보 보기
-      <input type="checkbox" id="chkTraffic" @click="setOverlayMapTypeId()" />
-      교통정보 보기
-      <input type="checkbox" id="chkBicycle" @click="setOverlayMapTypeId()" />
-      자전거도로 정보 보기
-    </p>
   </div>
 </template>
 
@@ -29,7 +67,6 @@ export default {
   data() {
     return {
       container: Document,
-      infowindow: "",
     };
   },
   props: {
@@ -57,20 +94,16 @@ export default {
         position: map.getCenter(),
       });
       marker.setMap(map);
-
       ////////////////////////////////////////////확대 / 축소 막대////////////////////////////////////////////////////
       // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
       var mapTypeControl = new kakao.maps.MapTypeControl();
-
       // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
       // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       var zoomControl = new kakao.maps.ZoomControl();
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
     },
-
     addScript() {
       const script = document.createElement("script"); /* global kakao */
       script.onload = () => kakao.maps.load(this.initMap);
@@ -78,7 +111,6 @@ export default {
         "http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=b433b7b8f851f9709d26a15fb4fc0660&libraries=services";
       document.head.appendChild(script);
     },
-
     // 지도 변환
     setOverlayMapTypeId() {
       var mapTypes = {
@@ -87,38 +119,31 @@ export default {
         bicycle: kakao.maps.MapTypeId.BICYCLE,
         useDistrict: kakao.maps.MapTypeId.USE_DISTRICT,
       };
-
       var chkTerrain = document.getElementById("chkTerrain"),
         chkTraffic = document.getElementById("chkTraffic"),
         chkBicycle = document.getElementById("chkBicycle"),
         chkUseDistrict = document.getElementById("chkUseDistrict");
-
       // 지도 타입을 제거합니다
       for (var type in mapTypes) {
         map.removeOverlayMapTypeId(mapTypes[type]);
       }
-
       // 지적편집도정보 체크박스가 체크되어있으면 지도에 지적편집도정보 지도타입을 추가합니다
       if (chkUseDistrict.checked) {
         map.addOverlayMapTypeId(mapTypes.useDistrict);
       }
-
       // 지형정보 체크박스가 체크되어있으면 지도에 지형정보 지도타입을 추가합니다
       if (chkTerrain.checked) {
         map.addOverlayMapTypeId(mapTypes.terrain);
       }
-
       // 교통정보 체크박스가 체크되어있으면 지도에 교통정보 지도타입을 추가합니다
       if (chkTraffic.checked) {
         map.addOverlayMapTypeId(mapTypes.traffic);
       }
-
       // 자전거도로정보 체크박스가 체크되어있으면 지도에 자전거도로정보 지도타입을 추가합니다
       if (chkBicycle.checked) {
         map.addOverlayMapTypeId(mapTypes.bicycle);
       }
     },
-
     addMarker() {
       var mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -128,11 +153,9 @@ export default {
       var geocoder = new kakao.maps.services.Geocoder(); // 주소로 좌표를 검색합니다
       var imageSrc =
         "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-
       // 해당 동에 아파트 거래내역이 없으면 해당 동으로 위치 조정
       if (this.aptlist.length == 0) {
         var addrFullName = this.si + " " + this.gugun + " ";
-
         geocoder.addressSearch(addrFullName, function (result, status) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
@@ -153,14 +176,11 @@ export default {
           }
         });
       }
-
       this.aptlist.forEach((element) => {
         // 마커 이미지의 이미지 크기 입니다
         var imageSize = new kakao.maps.Size(24, 35);
-
         // 마커 이미지를 생성합니다
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
         var addrFullName =
           this.si +
           " " +
@@ -169,7 +189,6 @@ export default {
           element.법정동 +
           " " +
           element.도로명;
-
         geocoder.addressSearch(addrFullName, function (result, status) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
@@ -194,6 +213,113 @@ export default {
           }
         });
       });
+    },
+
+    addKakaoMapScript() {
+      const script = document.createElement("script");
+      script.onload = () => kakao.maps.load(this.initMap);
+      script.src =
+        "//dapi.kakao.com/v2/maps/sdk.js?appkey=e1618b6825cc4783bc5f5e882244b42b&libraries=services";
+      document.head.appendChild(script);
+    },
+    //keyword로 장소 검색하기
+    searching() {
+      var ps = new kakao.maps.services.Places();
+      ps.keywordSearch(this.keyword, this.placeSearchCB);
+    },
+    placeSearchCB(data, status, pagination) {
+      if (status === kakao.maps.services.Status.OK) {
+        //  display place and marker
+        this.displayPlaces(data);
+        this.displayPagination(pagination);
+      } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        alert("검색결과가 없습니다.");
+      } else if (status === kakao.maps.services.Status.ERROR) {
+        alert("검색 중 오류가 발생했습니다.");
+      }
+    },
+    displayPlaces(data) {
+      var listEl = document.getElementById("placesList"),
+        menuEl = document.getElementById("menu_wrap"),
+        fragment = document.createDocumentFragment(),
+        bounds = new kakao.maps.LatLngBounds();
+      this.removeAllChildNode(listEl);
+      for (let i = 0; i < data.length; i++) {
+        var itemEl = this.getListItem(i, data[i]);
+        this.displayMarker(data[i], i);
+        bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+        fragment.appendChild(itemEl);
+      }
+      listEl.appendChild(fragment);
+      menuEl.scrollTop = 0;
+      this.map.setBounds(bounds);
+    },
+    getListItem(index, places) {
+      const el = document.createElement("id");
+      let itemStr = "";
+      itemStr =
+        '<span class="markerbg marker_' +
+        (index + 1) +
+        '"></span>' +
+        '<div class="info">' +
+        "   <h5>" +
+        places.place_name +
+        "</h5>";
+      if (places.road_address_name) {
+        itemStr +=
+          "    <span>" +
+          places.road_address_name +
+          "</span>" +
+          '   <span class="jibun gray">' +
+          places.address_name +
+          "</span>";
+      } else {
+        itemStr += "    <span>" + places.address_name + "</span>";
+      }
+      itemStr += '  <span class="tel">' + places.phone + "</span>" + "</div>";
+      el.innerHTML = itemStr;
+      el.className = "item";
+      return el;
+    },
+    displayMarker(place) {
+      // var let 으로 하면 인포윈도우 안됨
+      const position = new kakao.maps.LatLng(place.y, place.x);
+      const marker = new kakao.maps.Marker({
+        map: this.map,
+        position,
+      });
+      kakao.maps.event.addListener(marker, "click", () => {
+        this.displayInfoWindow(marker, place, position);
+        this.map.panTo(position);
+      });
+    },
+    displayPagination() {},
+    displayInfoWindow(marker, place, position) {
+      const content =
+        '<div id="infowindow", style="width:180px;height:200px;padding:15px 10px;">' +
+        '<span id="placeinfo">' +
+        place.place_name +
+        "<p>" +
+        place.phone +
+        "</p>" +
+        "<p>" +
+        place.address_name +
+        "</p>" +
+        "</span>" +
+        '<button type="button">닫기</button>' +
+        "</div>";
+      let infowindow = new kakao.maps.InfoWindow({
+        position,
+        content,
+        removable: true,
+      });
+      infowindow.setMap(this.map);
+    },
+    removeAllChildNode(el) {
+      // console.log(el)
+      while (el.hasChildNodes()) {
+        el.removeChild(el.lastChild);
+      }
     },
   },
 };
@@ -352,7 +478,6 @@ export default {
   cursor: default;
   color: #777;
 }
-
 .dot {
   overflow: hidden;
   float: left;
