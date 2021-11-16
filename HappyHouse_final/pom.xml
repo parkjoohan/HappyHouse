@@ -62,12 +62,19 @@
 			<version>2.9.2</version>
 		</dependency>
 		
-		<!-- JSON Converter(컨트롤러에서 전달한 VO데이터를 JSON으로 변경하기 위해 사용) -->
+		<!-- JSON Converter(컨트롤러에서 전달한 VO데이터를 JSON으로 변경하기 위해 사용) 필용없을걸 나중에 지우자-->
 		<dependency>
 		   <groupId>com.fasterxml.jackson.core</groupId>
 		   <artifactId>jackson-databind</artifactId>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt</artifactId>
+		    <version>0.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

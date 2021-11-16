@@ -11,5 +11,5 @@ public interface MemberService {
 	MemberDto getMember(String userId);
 	boolean modifyInfo(MemberDto memberDto);
 	boolean deleteMember(String id);
-	boolean login(Map<String, String> map);
+	int login(Map<String, String> map);
 }

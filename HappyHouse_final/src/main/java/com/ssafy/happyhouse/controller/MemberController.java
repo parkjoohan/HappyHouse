@@ -1,7 +1,6 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -17,13 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ssafy.happyhouse.model.MemberDto;
+import com.ssafy.happyhouse.model.service.JwtService;
 import com.ssafy.happyhouse.model.service.MemberService;
 
 import io.swagger.annotations.ApiOperation;
@@ -39,19 +35,39 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
-
-	@ApiOperation(value = "login 성공 여부", response = String.class)
-	@GetMapping("login")
-	public ResponseEntity<String> login(@RequestBody MemberDto memberDto) {
+	
+	@Autowired
+	private JwtService jwtService;
+	
+	@ApiOperation(value = "login")
+	@PostMapping("login")
+	public ResponseEntity<Map<String, Object>> login(@RequestBody MemberDto memberDto) {
 		logger.debug("login - 호출");
-		Map<String, String> map = new HashMap<>();
-		map.put("userId", memberDto.getUserId());
-		map.put("userPwd", memberDto.getUserPwd());
- 		if(memberService.login(map)) {
- 			System.out.println("성공");
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		
+		try {
+			Map<String, String> map = new HashMap<>();
+			map.put("userId", memberDto.getUserId());
+			map.put("userPwd", memberDto.getUserPwd());
+			
+			if(memberService.login(map) > 0) {
+				System.out.println("로그인 성공");
+				String token = jwtService.create(memberDto);
+				resultMap.put("token", token);
+				resultMap.put("message", SUCCESS);
+			}else {
+				System.out.println("로그인 실패");
+				resultMap.put("message", FAIL);
+				status = HttpStatus.ACCEPTED;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultMap.put("message", FAIL + ":" + e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
 //	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -61,7 +77,7 @@ public class MemberController {
 //	}
 
 	@ApiOperation(value = "새로운 회원 정보를 입력(등록)한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
-	@PostMapping
+	@PostMapping("join")
 	public ResponseEntity<String> registerMember(@RequestBody MemberDto memberDto) {
 		logger.debug("registerMember - 호출");
 		if(memberService.registerMember(memberDto)) {

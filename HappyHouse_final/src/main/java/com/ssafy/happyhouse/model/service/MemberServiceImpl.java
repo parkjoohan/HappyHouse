@@ -41,7 +41,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public boolean login(Map<String, String> map) {
-		return sqlSession.getMapper(MemberMapper.class).login(map) == 1;
+	public int login(Map<String, String> map) {
+		System.out.println(map.get("userId") + " : " + map.get("userPwd"));
+		return sqlSession.getMapper(MemberMapper.class).login(map);
 	}
 }

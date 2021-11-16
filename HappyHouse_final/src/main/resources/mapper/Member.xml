@@ -37,9 +37,9 @@
 	</delete>
 	
 	<!-- 로그인 -->
-	<select id="login" parameterType="map" resultType="MemberDto">
-		select userid, username
+	<select id="login" parameterType="map" resultType="int">
+		select count(*)
 		from hh_member
-		where userid = #{userid} and userpwd = #{userpwd}
+		where userid = #{userId} and userpwd = #{userPwd}
 	</select>
 </mapper>

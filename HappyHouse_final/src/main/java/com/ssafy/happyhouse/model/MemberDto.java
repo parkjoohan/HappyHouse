@@ -47,4 +47,10 @@ public class MemberDto {
 	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
+	
+	@Override
+	public String toString() {
+		return "MemberDto [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userAddress="
+				+ userAddress + ", userPhone=" + userPhone + "]";
+	}
 }
