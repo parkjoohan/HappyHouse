@@ -120,6 +120,7 @@ export default {
   },
   props: {},
   created() {
+    //회원정보 관련 기능들은 로그인 후 이용 가능 -> header에 acces-token 포함해서 요청
     axios.defaults.headers.common["access-token"] =
       this.$store.state.accessToken;
     axios
@@ -127,6 +128,10 @@ export default {
       .then(({ data }) => {
         //console.log(data);
         this.user = data;
+      })
+      .catch(() => {
+        alert("로그인 후 이용 가능");
+        this.$router.push({ name: "Home" });
       });
     this.viewMode = true;
   },
@@ -135,8 +140,8 @@ export default {
       if (this.viewMode) {
         this.viewMode = false;
       } else {
-        this.$router.push({ name: "Home" });
         //this.viewMode = true;
+        this.$router.push({ name: "Home" });
       }
     },
     modifyMember() {

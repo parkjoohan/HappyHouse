@@ -148,6 +148,9 @@ export default {
           }
           alert(msg);
           this.moveHome();
+        })
+        .catch(() => {
+          alert("등록 처리시 문제가 발생했습니다.");
         });
     },
     moveHome() {
