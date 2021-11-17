@@ -29,7 +29,19 @@
           >
         </b-navbar-nav>
 
-        <b-navbar-nav class="ml-auto">
+        <!--로그인 후-->
+        <b-navbar-nav class="ml-auto" v-if="accessToken">
+          <b-nav-item href="#" v-if="accessToken"
+            ><router-link :to="{ name: 'MyInfo' }" class="link"
+              ><b-icon icon="person-circle"></b-icon> 내정보</router-link
+            ></b-nav-item
+          >
+          <b-nav-item v-if="accessToken">
+            <b-btn @click="logout">로그아웃</b-btn>
+          </b-nav-item>
+        </b-navbar-nav>
+        <!--로그인 전-->
+        <b-navbar-nav class="ml-auto" v-else>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'SignUp' }" class="link"
               ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
@@ -49,6 +61,19 @@
 <script>
 export default {
   name: "NaviBar",
+  computed: {
+    accessToken() {
+      //console.log(this.$store.getters.accessToken);
+      return this.$store.getters.accessToken;
+    },
+  },
+  methods: {
+    logout() {
+      //console.log("로그아웃");
+      this.$store.dispatch("logout");
+      this.$router.push({ name: "Home" });
+    },
+  },
 };
 </script>
 

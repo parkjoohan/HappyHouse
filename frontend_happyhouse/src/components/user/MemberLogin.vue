@@ -64,25 +64,25 @@ export default {
   },
   methods: {
     login() {
-      window.sessionStorage.setItem("login-token", "");
+      //window.sessionStorage.setItem("access-token", "");
       const body = {
         userId: this.user.userid,
         userPwd: this.user.userpwd,
       };
-      http
-        .post(`/user/login`, JSON.stringify(body))
-        .then(({ data }) => {
-          console.log(data);
-          if (data.message == "success") {
-            console.log("로그인 성공");
-            window.sessionStorage.setItem("login-token", data.token);
-          } else {
-            alert("로그인 실패");
-          }
-        })
-        .catch(() => {
+      http.post(`/user/login`, JSON.stringify(body)).then(({ data }) => {
+        //console.log(data);
+        if (data.message == "success") {
+          console.log("로그인 성공");
+          //window.sessionStorage.setItem("access-token", data.token);
+          this.$store.dispatch("login", {
+            accessToken: data.token,
+            userId: this.user.userid,
+          });
+          this.$router.push({ name: "Home" });
+        } else {
           alert("로그인 실패");
-        });
+        }
+      });
     },
     movePage() {
       this.$router.push({ name: "SignUp" });
