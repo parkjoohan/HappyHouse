@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="primary" variant="light">
+    <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand href="#">
         <router-link to="/">
           <img

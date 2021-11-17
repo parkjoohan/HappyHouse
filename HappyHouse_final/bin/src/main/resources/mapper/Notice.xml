@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.NoticeMapper">
+	
+	<!-- 글 등록 -->
+	<insert id="registerNotice" parameterType="NoticeDto">
+		insert into notice (userid, subject, content, regtime)
+		values (#{userId}, #{subject}, #{content}, now())
+	</insert>
+	
+	<!-- 글 상세 -->
+	<select id="getNotice" parameterType="int" resultType="NoticeDto">
+		select * from notice
+		where articleNo = #{noticeNo}
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="modifyNotice" parameterType="NoticeDto">
+		update notice
+		set subject = #{subject}, content = #{content}
+		where articleNo = #{articleNo}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice
+		where articleno = #{noticeNo}
+	</delete>
+
+	<!-- 글 목록 -->
+	<select id="listNotice" resultType="NoticeDto">
+		select n.articleno, n.userid, n.subject, n.content, n.regtime, m.username
+		from notice n, hh_member m
+		where n.userid = m.userid
+	</select>
+	
+	<!-- 
+	
+	<select id="getTotalCount" parameterType="map" resultType="int">
+		select count(articleno)
+		from notice
+		<where>
+			<include refid="search"></include>
+		</where>
+	</select>
+	
+	
+	<resultMap type="NoticeDto" id="articleList">
+		<result column="articleno" property="articleNo"/>
+		<result column="userid" property="userId"/>
+		<result column="subject" property="subject"/>
+		<result column="content" property="content"/>
+		<result column="regtime" property="regTime"/>
+	</resultMap>
+	
+	<sql id="search">
+		<if test="word != null and word != ''">
+			<if test="key == subject">
+				and subject like concat('%', #{word}, '%')
+			</if>
+			<if test="key != subject">
+				and ${key} = #{word}
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listArticle" parameterType="map" resultMap="articleList">
+		select n.articleno, n.userid, n.subject, n.content, n.regtime, m.username
+		from notice n, hh_member m
+		where n.userid = m.userid
+ 		<include refid="search"></include>
+		order by n.articleno desc
+		limit #{start}, #{spp}
+	</select>
+	 -->
+
+</mapper>
