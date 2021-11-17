@@ -55,7 +55,7 @@ public class MemberController {
 			if(memberService.login(map) > 0) {
 				System.out.println("로그인 성공");
 				String token = jwtService.create(memberDto);
-				resultMap.put("token", token);
+				resultMap.put("token", token); //토큰 전송
 				resultMap.put("message", SUCCESS);
 			}else {
 				System.out.println("로그인 실패");

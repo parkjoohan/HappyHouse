@@ -19,11 +19,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		//registry.addInterceptor(jwtInterCeptor).addPathPatterns("/notice/**");
+		//아직 interceptor 적용 안함
+		//registry.addInterceptor(jwtInterCeptor).addPathPatterns("/notice/**"); //적용 경로
+		//.excludePathPatterns(Arrays.asList("/notice/list")); //적용 제외 경로
 	}
 	
-	
-	//Interceptor를 이용해서 처리하므로 전역의 Cors Origin 처리를 해준다.
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 //		System.out.println("CORS Setting");
@@ -38,7 +38,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //			.allowedOrigins("http://localhost:8080", "http://localhost:8081")
 			.allowedMethods("GET", "POST", "PUT", "DELETE")
 //			.maxAge(6000);
-			.exposedHeaders("login-token");
+			.exposedHeaders("access-token");
 	}
 
 }

@@ -17,9 +17,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtService {
 	
 	private static final String salt = "MYSALT";
-	private static final int expireMin = 5;
+	private static final int expireMin = 5; //5분
 	
-	//로그인 성공 시 사용자 정보를 기반으로 JWTToken을 생성해서 반환
+	//로그인 성공 시 사용자 정보를 기반으로 토큰을 생성해서 반환
 	public String create(final MemberDto member) {
 		
 		//JWT Token = Header + Payload + Signature
@@ -29,9 +29,9 @@ public class JwtService {
 		builder.setHeaderParam("typ", "JWT");
 		
 		//Payload 설정 - claim 정보 포함
-		builder.setSubject("login-token")
+		builder.setSubject("Login Token") //토큰 제목 설정
 			.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * expireMin))
-			.claim("Member", member);
+			.claim("Member", member); //담고 싶은 정보
 		
 		//signature - secret Key를 이용한 암호화
 		builder.signWith(SignatureAlgorithm.HS256, salt.getBytes());
@@ -41,7 +41,7 @@ public class JwtService {
 		return jwt;
 	}
 	
-	//전달받은 토큰이 제대로 생성된것인지 확인
+	//전달받은 토큰이 유효한 토큰인지 확인
 	public void checkValid(final String jwt) {
 		Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt);
 	}
