@@ -19,9 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		//아직 interceptor 적용 안함
-		//registry.addInterceptor(jwtInterCeptor).addPathPatterns("/notice/**"); //적용 경로
-		//.excludePathPatterns(Arrays.asList("/notice/list")); //적용 제외 경로
+		registry.addInterceptor(jwtInterCeptor).addPathPatterns("/user/**") //적용 경로
+		.excludePathPatterns(Arrays.asList("/user/login", "/user/idCheck/**", "/user/join")); //적용 제외 경로
 	}
 	
 	@Override
