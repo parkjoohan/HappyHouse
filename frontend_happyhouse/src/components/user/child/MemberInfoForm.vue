@@ -1,7 +1,7 @@
 <template>
   <b-row class="mb-1">
     <b-col style="text-align: left">
-      <b-form @submit="onSubmit" @reset="onReset">
+      <b-form>
         <b-form-group
           id="userId-group"
           label="아이디:"
@@ -10,10 +10,10 @@
         >
           <b-form-input
             id="userId"
+            :disabled="true"
             v-model="user.userId"
             type="text"
             required
-            placeholder="아이디 입력..."
           ></b-form-input>
         </b-form-group>
 
@@ -25,6 +25,7 @@
         >
           <b-form-input
             id="userPwd"
+            :disabled="viewMode"
             v-model="user.userPwd"
             type="text"
             required
@@ -40,6 +41,7 @@
         >
           <b-form-input
             id="userName"
+            :disabled="viewMode"
             v-model="user.userName"
             type="text"
             required
@@ -55,6 +57,7 @@
         >
           <b-form-input
             id="userAddress"
+            :disabled="viewMode"
             v-model="user.userAddress"
             type="text"
             required
@@ -70,19 +73,28 @@
         >
           <b-form-input
             id="userPhone"
+            :disabled="viewMode"
             v-model="user.userPhone"
             type="text"
             required
             placeholder="010-xxx-xxxx"
           ></b-form-input>
         </b-form-group>
-        <div v-if="this.type === 'modify'">
-          <b-button type="submit" variant="primary" class="m-1">확인</b-button>
-          <b-button type="reset" variant="danger" class="m-1">취소</b-button>
+        <div v-if="this.viewMode">
+          <b-button variant="primary" class="m-1" @click="changeMode"
+            >수정하기
+          </b-button>
+          <b-button variant="danger" class="m-1" @click="deleteMember"
+            >삭제
+          </b-button>
         </div>
         <div v-else>
-          <b-button variant="primary" class="m-1">수정하기</b-button>
-          <b-button variant="danger" class="m-1">삭제</b-button>
+          <b-button variant="primary" class="m-1" @click="modifyMember"
+            >확인
+          </b-button>
+          <b-button variant="danger" class="m-1" @click="changeMode"
+            >취소
+          </b-button>
         </div>
       </b-form>
     </b-col>
@@ -90,7 +102,6 @@
 </template>
 
 <script>
-//import http from "@/util/http-common";
 import axios from "axios";
 
 export default {
@@ -104,7 +115,7 @@ export default {
         userAddress: "",
         userPhone: "",
       },
-      idresult: "",
+      viewMode: false,
     };
   },
   props: {},
@@ -117,37 +128,47 @@ export default {
         //console.log(data);
         this.user = data;
       });
+    this.viewMode = true;
   },
   methods: {
-    onSubmit(event) {
-      event.preventDefault();
-      this.registerMember();
+    changeMode() {
+      if (this.viewMode) {
+        this.viewMode = false;
+      } else {
+        this.$router.push({ name: "Home" });
+        //this.viewMode = true;
+      }
     },
-    onReset(event) {
-      event.preventDefault();
-      this.user.userId = "";
-      this.user.userPwd = "";
-      this.user.userName = "";
-      this.user.userAddress = "";
-      this.user.userPhone = "";
+    modifyMember() {
+      axios
+        .put(`http://localhost:9999/user/` + this.user.userId, {
+          userId: this.user.userId,
+          userPwd: this.user.userPwd,
+          userName: this.user.userName,
+          userAddress: this.user.userAddress,
+          userPhone: this.user.userPhone,
+        })
+        .then(({ data }) => {
+          let msg = "회원 정보 수정시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "수정이 완료되었습니다.";
+          }
+          alert(msg);
+          this.moveHome();
+        });
     },
-    registerMember() {
-      // http
-      //   .post(`/user/join`, {
-      //     userId: this.user.userId,
-      //     userPwd: this.user.userPwd,
-      //     userName: this.user.userName,
-      //     userAddress: this.user.userAddress,
-      //     userPhone: this.user.userPhone,
-      //   })
-      //   .then(({ data }) => {
-      //     let msg = "등록 처리시 문제가 발생했습니다.";
-      //     if (data === "success") {
-      //       msg = "회원가입이 완료되었습니다.";
-      //     }
-      //     alert(msg);
-      //     this.moveHome();
-      //   });
+    deleteMember() {
+      axios
+        .delete(`http://localhost:9999/user/` + this.user.userId)
+        .then(({ data }) => {
+          let msg = "회원 삭제시 문제가 발생했습니다.";
+          if (data === "success") {
+            msg = "삭제가 완료되었습니다.";
+          }
+          alert(msg);
+          this.$store.dispatch("logout");
+          this.moveHome();
+        });
     },
     moveHome() {
       this.$router.push({ name: "Home" });

@@ -5,7 +5,7 @@
         <b-alert variant="secondary" show><h3>회원정보</h3></b-alert>
       </b-col>
     </b-row>
-    <member-info-form type="view" />
+    <member-info-form />
   </b-container>
 </template>
 
