@@ -1,37 +1,18 @@
 package com.ssafy.happyhouse.config;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.ssafy.happyhouse.interceptor.JwtInterceptor;
 
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
-	
-	//로그인이 필요한 기능들
-	private final List<String> patterns1 = Arrays.asList("/user", "/notice/register");
-	private final List<String> patterns2 = Arrays.asList("/user", "/notice/modify");
-	private final List<String> patterns3 = Arrays.asList("/user", "/notice/delete");
-	
-	@Autowired
-	private JwtInterceptor jwtInterCeptor;
-	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(jwtInterCeptor).addPathPatterns("/user/**") //적용 경로
-		.excludePathPatterns(Arrays.asList("/user/login", "/user/idCheck/**", "/user/join")); //적용 제외 경로
-		
-		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns1);
-		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns2);
-		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns3);
-	}
-	
+@EnableWebMvc
+public class WebConfig implements WebMvcConfigurer {
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 //		System.out.println("CORS Setting");
@@ -40,13 +21,26 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //		Allow "simple" methods GET, HEAD and POST.
 //		Allow all headers.
 //		Set max age to 1800 seconds (30 minutes).
-		
 		registry.addMapping("/**")
 			.allowedOrigins("*")
 //			.allowedOrigins("http://localhost:8080", "http://localhost:8081")
-			.allowedMethods("GET", "POST", "PUT", "DELETE")
-//			.maxAge(6000);
-			.exposedHeaders("access-token");
+			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+			.maxAge(6000);
 	}
-
+	
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new JwtInterceptor())
+//                .addPathPatterns("/**")  // 보통은 일단은 모든 패턴을 매칭되도록
+//                .excludePathPatterns("/test/**/") //빠져야되는패턴 일반적으로는 테스팅인 경로들
+//                .excludePathPatterns("/users/login"); //그리고 로그인을 위해 필요한 요청들..
+//    }
+	
+//	Swagger UI 실행시 404처리
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/swagger-ui.html**").addResourceLocations("classpath:/META-INF/resources/swagger-ui.html");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+	
 }

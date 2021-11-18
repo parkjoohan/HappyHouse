@@ -8,8 +8,9 @@ public interface MemberService {
 		
 	boolean registerMember(MemberDto memberDto);
 	int idCheck(String id);
-	MemberDto getMember(String userId);
+	//MemberDto getMember(String userId);
 	boolean modifyInfo(MemberDto memberDto);
 	boolean deleteMember(String id);
-	int login(Map<String, String> map);
+	public MemberDto login(MemberDto memberDto) throws Exception;
+	public MemberDto userInfo(String userid) throws Exception;
 }

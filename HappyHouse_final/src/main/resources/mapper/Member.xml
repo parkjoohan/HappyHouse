@@ -17,11 +17,11 @@
 		where userid = #{id}
 	</select>
 	
-	<!-- 회원 정보 -->
+	<!-- 회원 정보
 	<select id="getMember" parameterType="String" resultType="MemberDto">
 		select * from hh_member
 		where userid = #{userId}
-	</select>
+	</select>-->
 	
 	<!-- 회원 정보 수정 -->
 	<update id="modifyInfo" parameterType="MemberDto">
@@ -36,10 +36,21 @@
 		where userid = #{userId}
 	</delete>
 	
-	<!-- 로그인 -->
+	<!-- 로그인
 	<select id="login" parameterType="map" resultType="int">
 		select count(*)
 		from hh_member
 		where userid = #{userId} and userpwd = #{userPwd}
+	</select>-->
+	
+	<select id="login" parameterType="memberDto" resultType="memberDto">
+		select username, userid
+		from hh_member
+		where userid = #{userId} and userpwd = #{userPwd}
+	</select>
+	
+	<select id="userInfo" parameterType="String" resultType="memberDto">
+		select * from hh_member
+		where userid = #{userId}
 	</select>
 </mapper>

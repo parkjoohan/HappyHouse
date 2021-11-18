@@ -25,10 +25,10 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).idCheck(id);
 	}
 	
-	@Override
-	public MemberDto getMember(String userId) {
-		return sqlSession.getMapper(MemberMapper.class).getMember(userId);
-	}
+//	@Override
+//	public MemberDto getMember(String userId) {
+//		return sqlSession.getMapper(MemberMapper.class).getMember(userId);
+//	}
 	
 	@Override
 	public boolean modifyInfo(MemberDto memberDto) {
@@ -41,8 +41,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int login(Map<String, String> map) {
-		System.out.println(map.get("userId") + " : " + map.get("userPwd"));
-		return sqlSession.getMapper(MemberMapper.class).login(map);
+	public MemberDto login(MemberDto memberDto) throws Exception {
+		if(memberDto.getUserId() == null || memberDto.getUserPwd() == null)
+			return null;
+		return sqlSession.getMapper(MemberMapper.class).login(memberDto);
+	}
+	
+	@Override
+	public MemberDto userInfo(String userid) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).userInfo(userid);
 	}
 }
