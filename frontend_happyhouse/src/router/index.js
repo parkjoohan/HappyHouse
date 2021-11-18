@@ -16,7 +16,28 @@ import NoticeDelete from "@/components/notice/NoticeDelete.vue";
 
 import House from "@/views/House.vue";
 
+import store from "@/store/index.js";
+
 Vue.use(VueRouter);
+
+// https://router.vuejs.org/kr/guide/advanced/navigation-guards.html
+const onlyAuthUser = async (to, from, next) => {
+  // console.log(store);
+  const checkUserInfo = store.getters["memberStore/checkUserInfo"];
+  const getUserInfo = store._actions["memberStore/getUserInfo"];
+  let token = sessionStorage.getItem("access-token");
+  if (checkUserInfo == null && token) {
+    await getUserInfo(token);
+  }
+  if (checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다!");
+    // next({ name: "SignIn" });
+    router.push({ name: "SignIn" });
+  } else {
+    console.log("로그인 완료");
+    next();
+  }
+};
 
 const routes = [
   {
@@ -42,6 +63,7 @@ const routes = [
       {
         path: "myinfo",
         name: "MyInfo",
+        beforeEnter: onlyAuthUser,
         component: MemberInfo,
       },
     ],
@@ -60,21 +82,25 @@ const routes = [
       {
         path: ":no",
         name: "NoticeView",
+        beforeEnter: onlyAuthUser,
         component: NoticeView,
       },
       {
         path: "write",
         name: "NoticeWrite",
+        beforeEnter: onlyAuthUser,
         component: NoticeWrite,
       },
       {
         path: "update/:no",
         name: "NoticeUpdate",
+        beforeEnter: onlyAuthUser,
         component: NoticeUpdate,
       },
       {
         path: "delete/:no",
         name: "NoticeDelete",
+        beforeEnter: onlyAuthUser,
         component: NoticeDelete,
       },
     ],
@@ -83,6 +109,10 @@ const routes = [
     path: "/house",
     name: "House",
     component: House,
+  },
+  {
+    path: "*",
+    redirect: "/",
   },
 ];
 

@@ -9,14 +9,18 @@
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="listArticle">목록</b-button>
       </b-col>
-      <b-col class="text-right">
+      <b-col
+        class="text-right"
+        v-if="this.userInfo.userId === this.article.userId"
+      >
         <b-button
           variant="outline-info"
           size="sm"
           @click="moveModifyArticle"
           class="mr-2"
-          >글수정</b-button
         >
+          글수정
+        </b-button>
         <b-button variant="outline-danger" size="sm" @click="deleteArticle"
           >글삭제</b-button
         >
@@ -42,7 +46,10 @@
 
 <script>
 //import moment from "moment";
-import http from "@/util/http-common";
+import { mapState } from "vuex";
+import { getArticle, deleteArticle } from "@/api/notice";
+
+const memberStore = "memberStore";
 
 export default {
   data() {
@@ -51,6 +58,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     message() {
       if (this.article.content)
         return this.article.content.split("\n").join("<br>");
@@ -63,10 +71,15 @@ export default {
     // },
   },
   created() {
-    http.get(`/notice/${this.$route.params.no}`).then(({ data }) => {
-      //console.log(data);
-      this.article = data;
-    });
+    getArticle(
+      this.$route.params.no,
+      (response) => {
+        this.article = response.data;
+      },
+      (error) => {
+        console.log("에러발생!!", error);
+      }
+    );
   },
   methods: {
     listArticle() {
@@ -80,10 +93,10 @@ export default {
       //   this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
     deleteArticle() {
-      if (confirm("정말로 삭제?")) {
-        this.$router.replace({
-          name: "NoticeDelete",
-          params: { no: this.article.articleNo },
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        deleteArticle(this.article.articleNo, () => {
+          alert("삭제가 완료됐습니다.");
+          this.$router.push({ name: "NoticeList" });
         });
       }
     },

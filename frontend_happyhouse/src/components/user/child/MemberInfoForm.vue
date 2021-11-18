@@ -74,7 +74,7 @@
           <b-form-input
             id="userPhone"
             :disabled="viewMode"
-            v-model="user.userPhone"
+            v-model="userInfo.userPhone"
             type="text"
             required
             placeholder="010-xxx-xxxx"
@@ -102,7 +102,10 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapMutations } from "vuex";
+import { modifyInfo, deleteInfo } from "@/api/member";
+
+const memberStore = "memberStore";
 
 export default {
   name: "MemberInfoForm",
@@ -119,23 +122,15 @@ export default {
     };
   },
   props: {},
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   created() {
-    //회원정보 관련 기능들은 로그인 후 이용 가능 -> header에 acces-token 포함해서 요청
-    axios.defaults.headers.common["access-token"] =
-      this.$store.state.accessToken;
-    axios
-      .get(`http://localhost:9999/user/info/` + this.$store.state.userId)
-      .then(({ data }) => {
-        //console.log(data);
-        this.user = data;
-      })
-      .catch(() => {
-        alert("로그인 후 이용 가능");
-        this.$router.push({ name: "Home" });
-      });
     this.viewMode = true;
+    this.user = this.userInfo;
   },
   methods: {
+    ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     changeMode() {
       if (this.viewMode) {
         this.viewMode = false;
@@ -145,35 +140,39 @@ export default {
       }
     },
     modifyMember() {
-      axios
-        .put(`http://localhost:9999/user/` + this.user.userId, {
-          userId: this.user.userId,
-          userPwd: this.user.userPwd,
-          userName: this.user.userName,
-          userAddress: this.user.userAddress,
-          userPhone: this.user.userPhone,
-        })
-        .then(({ data }) => {
-          let msg = "회원 정보 수정시 문제가 발생했습니다.";
+      modifyInfo(
+        this.user,
+        ({ data }) => {
+          let msg = "수정 처리시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "수정이 완료되었습니다.";
           }
           alert(msg);
           this.moveHome();
-        });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
     deleteMember() {
-      axios
-        .delete(`http://localhost:9999/user/` + this.user.userId)
-        .then(({ data }) => {
-          let msg = "회원 삭제시 문제가 발생했습니다.";
+      deleteInfo(
+        this.user,
+        ({ data }) => {
+          let msg = "탈퇴 처리시 문제가 발생했습니다.";
           if (data === "success") {
-            msg = "삭제가 완료되었습니다.";
+            msg = "탈퇴가 완료되었습니다.";
+            this.SET_IS_LOGIN(false);
+            this.SET_USER_INFO(null);
+            sessionStorage.removeItem("access-token");
           }
           alert(msg);
-          this.$store.dispatch("logout");
           this.moveHome();
-        });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
     moveHome() {
       this.$router.push({ name: "Home" });

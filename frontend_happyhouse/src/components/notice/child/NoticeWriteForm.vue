@@ -2,12 +2,7 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
-          id="writer-group"
-          label="작성자:"
-          label-for="writer"
-          description="작성자를 입력하세요."
-        >
+        <b-form-group id="writer-group" label="작성자:" label-for="writer">
           <b-form-input
             id="writer"
             :disabled="isWriter"
@@ -37,6 +32,7 @@
           <b-form-textarea
             id="content"
             v-model="article.content"
+            required
             placeholder="내용 입력..."
             rows="10"
             max-rows="15"
@@ -60,7 +56,10 @@
 </template>
 
 <script>
-import http from "@/util/http-common";
+import { mapState } from "vuex";
+import { writeArticle, getArticle, modifyArticle } from "@/api/notice";
+
+const memberStore = "memberStore";
 
 export default {
   name: "NoticeWriteForm",
@@ -71,81 +70,70 @@ export default {
         userId: "",
         subject: "",
         content: "",
+        regTime: "",
       },
-      isWriter: false,
+      isWriter: true,
     };
+  },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
   },
   props: {
     type: { type: String },
   },
   created() {
     if (this.type === "modify") {
-      http.get(`/notice/${this.$route.params.no}`).then(({ data }) => {
-        // this.article.no = data.article.no;
-        // this.article.writer = data.article.writer;
-        // this.article.title = data.article.title;
-        // this.article.content = data.article.content;
-        this.article = data;
-      });
-      this.isWriter = true;
+      getArticle(
+        this.$route.params.no,
+        ({ data }) => {
+          this.article = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
+    this.article.userId = this.userInfo.userId;
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-
-      let err = true;
-      let msg = "";
-      !this.article.userId &&
-        ((msg = "작성자 입력해주세요"),
-        (err = false),
-        this.$refs.writer.focus()); //ref 없는듯..?
-      err &&
-        !this.article.subject &&
-        ((msg = "제목 입력해주세요"), (err = false), this.$refs.title.focus());
-      err &&
-        !this.article.content &&
-        ((msg = "내용 입력해주세요"),
-        (err = false),
-        this.$refs.content.focus());
-
-      if (!err) alert(msg);
-      else
-        this.type === "register" ? this.registArticle() : this.modifyArticle();
+      this.type === "register" ? this.registArticle() : this.modifyArticle();
     },
     onReset(event) {
       event.preventDefault();
-      this.article.articleNo = 0;
       this.article.subject = "";
       this.article.content = "";
-      //this.$router.push({ name: "NoticeList" });
     },
     registArticle() {
-      http
-        .post(`/notice`, {
-          articleNo: this.article.articleNo,
+      writeArticle(
+        {
           userId: this.article.userId,
           subject: this.article.subject,
           content: this.article.content,
-        })
-        .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
+        },
+        ({ data }) => {
+          let msg = "글 등록 처리시 문제가 발생했습니다.";
           if (data === "success") {
-            msg = "등록이 완료되었습니다.";
+            msg = "글 등록이 완료되었습니다.";
           }
           alert(msg);
           this.moveList();
-        });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
     modifyArticle() {
-      http
-        .put(`/notice/${this.article.articleNo}`, {
+      modifyArticle(
+        {
           articleNo: this.article.articleNo,
           userId: this.article.userId,
           subject: this.article.subject,
           content: this.article.content,
-        })
-        .then(({ data }) => {
+        },
+        ({ data }) => {
           let msg = "수정 처리시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "수정이 완료되었습니다.";
@@ -153,7 +141,11 @@ export default {
           alert(msg);
           // 현재 route를 /list로 변경.
           this.$router.push({ name: "NoticeList" });
-        });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
     moveList() {
       this.$router.push({ name: "NoticeList" });

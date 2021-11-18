@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import http from "@/util/http-common";
+import { joinMember, checkId } from "@/api/member";
 
 export default {
   name: "MemberJoinForm",
@@ -121,40 +121,36 @@ export default {
       this.user.userPhone = "";
     },
     idCheck() {
-      //console.log(this.user.userId);
-      http.get(`/user/idCheck/` + this.user.userId).then(({ data }) => {
-        //console.log(data);
-        let cnt = data.idcount;
-        if (cnt == 0) {
-          this.idresult = this.user.userId + "는 사용 가능합니다.";
-        } else {
-          this.idresult = this.user.userId + "는 사용할 수 없습니다.";
+      checkId(
+        this.user.userId,
+        ({ data }) => {
+          let cnt = data.idcount;
+          if (cnt == 0) {
+            this.idresult = this.user.userId + "는 사용 가능합니다.";
+          } else {
+            this.idresult = this.user.userId + "는 사용할 수 없습니다.";
+          }
+        },
+        (error) => {
+          console.log(error);
         }
-      });
+      );
     },
     registerMember() {
-      http
-        .post(`/user/join`, {
-          userId: this.user.userId,
-          userPwd: this.user.userPwd,
-          userName: this.user.userName,
-          userAddress: this.user.userAddress,
-          userPhone: this.user.userPhone,
-        })
-        .then(({ data }) => {
-          let msg = "등록 처리시 문제가 발생했습니다.";
+      joinMember(
+        this.user,
+        ({ data }) => {
+          let msg = "회원가입 처리시 문제가 발생했습니다.";
           if (data === "success") {
             msg = "회원가입이 완료되었습니다.";
           }
           alert(msg);
-          this.moveHome();
-        })
-        .catch(() => {
-          alert("등록 처리시 문제가 발생했습니다.");
-        });
-    },
-    moveHome() {
-      this.$router.push({ name: "Home" });
+          this.$router.push({ name: "SignIn" });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };

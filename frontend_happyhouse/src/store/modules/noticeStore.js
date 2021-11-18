@@ -1,4 +1,4 @@
-const boardStore = {
+const noticeStore = {
   namespaced: true,
   state: {},
   getters: {},
@@ -6,4 +6,4 @@ const boardStore = {
   actions: {},
 };
 
-export default boardStore;
+export default noticeStore;

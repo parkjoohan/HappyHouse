@@ -40,7 +40,7 @@
 
 <script>
 import NoticeListRow from "@/components/notice/child/NoticeListRow";
-import axios from "axios";
+import { listArticle } from "@/api/notice.js";
 
 export default {
   name: "NoticeList",
@@ -53,12 +53,14 @@ export default {
     };
   },
   created() {
-    axios.defaults.headers.common["access-token"] =
-      this.$store.state.accessToken;
-    axios.get(`http://localhost:9999/notice`).then(({ data }) => {
-      //console.log(data);
-      this.articles = data;
-    });
+    listArticle(
+      (response) => {
+        this.articles = response.data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   },
   methods: {
     moveWrite() {

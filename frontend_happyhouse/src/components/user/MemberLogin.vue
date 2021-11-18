@@ -16,21 +16,27 @@
             <b-form-group label="아이디:" label-for="userid">
               <b-form-input
                 id="userid"
-                v-model="user.userid"
+                v-model="user.userId"
                 required
                 placeholder="아이디 입력...."
+                @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
             <b-form-group label="비밀번호:" label-for="userpwd">
               <b-form-input
                 type="password"
                 id="userpwd"
-                v-model="user.userpwd"
+                v-model="user.userPwd"
                 required
                 placeholder="비밀번호 입력...."
+                @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
-            <b-button type="button" variant="primary" class="m-1" @click="login"
+            <b-button
+              type="button"
+              variant="primary"
+              class="m-1"
+              @click="confirm"
               >로그인</b-button
             >
             <b-button
@@ -49,40 +55,32 @@
 </template>
 
 <script>
-import http from "@/util/http-common";
+import { mapState, mapActions } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "MemberLogin",
   data() {
     return {
-      isLoginError: false,
       user: {
-        userid: "",
-        userpwd: "",
+        userId: null,
+        userPwd: null,
       },
     };
   },
+  computed: {
+    ...mapState(memberStore, ["isLogin", "isLoginError"]),
+  },
   methods: {
-    login() {
-      //window.sessionStorage.setItem("access-token", "");
-      const body = {
-        userId: this.user.userid,
-        userPwd: this.user.userpwd,
-      };
-      http.post(`/user/login`, JSON.stringify(body)).then(({ data }) => {
-        //console.log(data);
-        if (data.message == "success") {
-          console.log("로그인 성공");
-          //window.sessionStorage.setItem("access-token", data.token);
-          this.$store.dispatch("login", {
-            accessToken: data.token,
-            userId: this.user.userid,
-          });
-          this.$router.push({ name: "Home" });
-        } else {
-          alert("로그인 실패");
-        }
-      });
+    ...mapActions(memberStore, ["userConfirm", "getUserInfo"]),
+    async confirm() {
+      await this.userConfirm(this.user);
+      let token = sessionStorage.getItem("access-token");
+      if (this.isLogin) {
+        await this.getUserInfo(token);
+        this.$router.push({ name: "Home" });
+      }
     },
     movePage() {
       this.$router.push({ name: "SignUp" });
@@ -90,3 +88,5 @@ export default {
   },
 };
 </script>
+
+<style></style>
