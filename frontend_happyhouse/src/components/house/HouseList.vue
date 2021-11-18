@@ -4,6 +4,8 @@
       v-for="(house, index) in houses"
       :key="index"
       :house="house"
+      @select-apt="selectApt"
+      @select-img="selectImage"
     />
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
@@ -29,6 +31,14 @@ export default {
   },
   computed: {
     ...mapState(["houses"]),
+  },
+  methods: {
+    selectApt: function (apt) {
+      this.$emit("select-apt", apt);
+    },
+    selectImage: function (img) {
+      this.$emit("select-img", img);
+    },
   },
 };
 </script>

@@ -39,7 +39,7 @@
         <div id="pagination"></div>
       </div>
       <div hidden>
-        {{ aptlist }}
+        {{ SET_HOUSE_LIST }}
       </div>
       <p>
         <input
@@ -69,7 +69,7 @@ export default {
     };
   },
   props: {
-    aptlist: Array,
+    SET_HOUSE_LIST: Array,
     si: String,
     gugun: String,
     dong: String,
@@ -153,7 +153,7 @@ export default {
       var imageSrc =
         "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
       // 해당 동에 아파트 거래내역이 없으면 해당 동으로 위치 조정
-      if (this.aptlist.length == 0) {
+      if (this.SET_HOUSE_LIST.length == 0) {
         var addrFullName = this.si + " " + this.gugun + " ";
         geocoder.addressSearch(addrFullName, function (result, status) {
           // 정상적으로 검색이 완료됐으면
@@ -175,7 +175,7 @@ export default {
           }
         });
       }
-      this.aptlist.forEach((element) => {
+      this.SET_HOUSE_LIST.forEach((element) => {
         // 마커 이미지의 이미지 크기 입니다
         var imageSize = new kakao.maps.Size(24, 35);
         // 마커 이미지를 생성합니다

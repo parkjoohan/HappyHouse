@@ -2,12 +2,13 @@ package com.ssafy.happyhouse.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.ssafy.happyhouse.model.service.JwtService;
+import com.ssafy.happyhouse.model.MemberDto;
 
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
@@ -17,18 +18,12 @@ public class JwtInterceptor implements HandlerInterceptor {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
-		if(request.getMethod().equals("OPTIONS")) {
-			return true;
-		}else {
-			String token = request.getHeader("access-token");
-			System.out.println("token :" + token);
-			if(token != null && token.length() > 0) {
-				jwtService.checkValid(token);
-				return true;
-			}
-			else {
-				throw new RuntimeException("인증 토큰이 없습니다.");
-			}
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("userinfo");
+		if(memberDto == null) {
+			response.sendRedirect(request.getContextPath() + "/user/login");
+			return false;
 		}
+		return true;
 	}
 }

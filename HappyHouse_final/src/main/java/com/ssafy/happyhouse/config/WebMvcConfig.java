@@ -14,6 +14,11 @@ import com.ssafy.happyhouse.interceptor.JwtInterceptor;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 	
+	//로그인이 필요한 기능들
+	private final List<String> patterns1 = Arrays.asList("/user", "/notice/register");
+	private final List<String> patterns2 = Arrays.asList("/user", "/notice/modify");
+	private final List<String> patterns3 = Arrays.asList("/user", "/notice/delete");
+	
 	@Autowired
 	private JwtInterceptor jwtInterCeptor;
 	
@@ -21,6 +26,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(jwtInterCeptor).addPathPatterns("/user/**") //적용 경로
 		.excludePathPatterns(Arrays.asList("/user/login", "/user/idCheck/**", "/user/join")); //적용 제외 경로
+		
+		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns1);
+		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns2);
+		registry.addInterceptor(jwtInterCeptor).addPathPatterns(patterns3);
 	}
 	
 	@Override
