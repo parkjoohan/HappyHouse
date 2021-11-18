@@ -16,7 +16,7 @@ function dongList(params, success, fail) {
 }
 
 function houseList(params, success, fail) {
-  house.get(`/map/apt`, { params: params }).then(success).catch(fail);
+  house.get(``, { params: params }).then(success).catch(fail);
 }
 
 export { sidoList, gugunList, dongList, houseList };

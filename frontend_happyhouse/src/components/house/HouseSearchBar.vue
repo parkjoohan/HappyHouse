@@ -69,8 +69,6 @@ export default {
     // this.sidoList();
     this.CLEAR_SIDO_LIST();
     this.getSido();
-    this.CLEAR_GUGUN_LIST();
-    this.getGugun();
   },
   methods: {
     ...mapActions(houseStore, [
@@ -83,6 +81,7 @@ export default {
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
       "CLEAR_DONG_LIST",
+      "CLEAR_HOUSE_LIST",
     ]),
     // sidoList() {
     //   this.getSido();
@@ -100,6 +99,8 @@ export default {
       if (this.gugunCode) this.getDong(this.gugunCode);
     },
     searchApt() {
+      // console.log(this.dongCode);
+      this.CLEAR_HOUSE_LIST();
       if (this.dongCode) this.getHouseList(this.dongCode);
     },
   },

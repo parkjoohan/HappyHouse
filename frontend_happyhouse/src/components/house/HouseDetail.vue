@@ -26,7 +26,16 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="info">법정동 : {{ house.법정동 }} </b-alert>
+        <b-alert show variant="primary"
+          >거래일자 : {{ house.년 }}년 {{ house.월 }}월 {{ house.일 }}일
+        </b-alert>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-alert show variant="info"
+          >주소 : {{ house.법정동 }} {{ house.지번 }}
+        </b-alert>
       </b-col>
     </b-row>
     <b-row>
