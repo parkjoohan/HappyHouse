@@ -9,9 +9,11 @@ const houseStore = {
     houses: [],
     house: null,
   },
-
-  getters: {},
-
+  getters: {
+    housesChange(state) {
+      return state.houses;
+    },
+  },
   mutations: {
     SET_SIDO_LIST: (state, sidos) => {
       sidos.forEach((sido) => {
@@ -36,6 +38,9 @@ const houseStore = {
           state.houses.push(item);
         }
       });
+      //지도에 어떻게 찍을까
+      // this.$emit("addMarker", this.houses);
+      // bus.$emit("addMarker", this.houses);
     },
     SET_DETAIL_HOUSE: (state, house) => {
       state.house = house;
@@ -112,7 +117,7 @@ const houseStore = {
         DEAL_YMD: "202110",
         serviceKey: decodeURIComponent(SERVICE_KEY),
       };
-      console.log(dongCode.slice(-5) + "동 검색");
+      //console.log(dongCode.slice(-5) + "동 검색");
       houseList(
         params,
         (response) => {
