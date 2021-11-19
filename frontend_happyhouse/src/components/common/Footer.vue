@@ -37,14 +37,10 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
               <h6 class="text-uppercase mb-4 font-weight-bold">Menu</h6>
               <p>
-                <router-link :to="{ name: 'House' }" class="link">
-                  <a class="text-white">부동산</a>
-                </router-link>
+                <a class="text-white">부동산</a>
               </p>
               <p>
-                <router-link :to="{ name: 'Notice' }" class="link">
-                  <a class="text-white" href="./Notice.vue">자유게시판</a>
-                </router-link>
+                <a class="text-white">자유게시판</a>
               </p>
             </div>
             <!-- Grid column -->
