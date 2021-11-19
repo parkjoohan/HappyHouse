@@ -134,21 +134,31 @@ export default {
     },
 
     //////////////////////////////////////////아파트 마킹//////////////////////////////////////////
-    displayMarkersWithAddress(places) {
+    displayMarkersWithAddress(placeList) {
+      console.log(placeList);
+      var places = {};
+      for (let i = 0; i < placeList.length; i++) {
+        if (!places[placeList[i].아파트]) {
+          console.log(places[placeList[i].아파트]);
+          places[placeList[i].아파트] = placeList[i];
+        }
+      }
+      console.log(places);
       var bounds = new kakao.maps.LatLngBounds();
       this.removeMarker();
-      for (let i = 0; i < places.length; i++) {
-        var placePosition;
 
+      let idx = 0;
+      for (let [key, value] of Object.entries(places)) {
+        var placePosition;
         //console.log("geocoding 전: " + places[i].법정동 + " " + places[i].지번);
         geocoder.addressSearch(
-          places[i].법정동 + " " + places[i].지번,
+          value.법정동 + " " + value.지번,
           function (result, status) {
             // 정상적으로 검색이 완료됐으면
             if (status === kakao.maps.services.Status.OK) {
               placePosition = new kakao.maps.LatLng(result[0].y, result[0].x);
               //console.log(placePosition);
-
+              console.log(key, value);
               //addMarker()
               var imageSrc =
                   "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png",
@@ -156,7 +166,7 @@ export default {
                 imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
                 imgOptions = {
                   spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-                  spriteOrigin: new kakao.maps.Point(0, i * 46 + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+                  spriteOrigin: new kakao.maps.Point(0, idx++ * 46 + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
                   offset: new kakao.maps.Point(13, 37), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
                 },
                 markerImage = new kakao.maps.MarkerImage(
@@ -175,8 +185,7 @@ export default {
               //검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
               //LatLngBounds 객체에 좌표를 추가합니다
               bounds.extend(placePosition);
-
-              (function (marker, title, code, place) {
+              (function (marker, place) {
                 kakao.maps.event.addListener(marker, "click", function () {
                   if (customOverlay) {
                     customOverlay.setMap(null);
@@ -186,7 +195,7 @@ export default {
                   //인포윈도우에 장소명을 표시합니다 : getListItem()
                   var content = `
                     <div class="overlaybox">
-                      <div class="boxtitle">${title}
+                      <div class="boxtitle">${place.아파트}
                         <div class="close" onclick="closeOverlay()" title="닫기"></div>
                       </div>
                       
@@ -225,7 +234,7 @@ export default {
                 kakao.maps.event.addListener(map, "click", function () {
                   customOverlay.setMap(null);
                 });
-              })(marker, places[i].아파트, places[i].법정동, places[i]);
+              })(marker, value);
 
               //검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
               map.setBounds(bounds);
