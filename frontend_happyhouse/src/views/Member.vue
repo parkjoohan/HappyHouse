@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <img src="@/assets/login.png" alt="" />
+    <img src="@/assets/login.png" alt="" /><br />
     <router-view></router-view>
   </b-container>
 </template>
