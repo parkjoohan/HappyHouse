@@ -12,17 +12,17 @@
       <b-carousel-slide
         caption="서울"
         text="I · SEOUL · U"
-        :img-src="require(`@/assets/1.jpg`)"
+        :img-src="require(`@/assets/seoul.jpg`)"
       ></b-carousel-slide>
       <b-carousel-slide
         caption="광주"
         text="SSAFY의 중심지!!"
-        :img-src="require(`@/assets/2.jpg`)"
+        :img-src="require(`@/assets/gwangju.jpg`)"
       ></b-carousel-slide>
       <b-carousel-slide
         caption="부산"
         text="바다와 먹거리의 중심!"
-        :img-src="require(`@/assets/3.jpg`)"
+        :img-src="require(`@/assets/pusan.jpg`)"
       ></b-carousel-slide>
     </b-carousel>
   </b-container>

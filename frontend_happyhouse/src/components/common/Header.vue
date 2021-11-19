@@ -4,9 +4,9 @@
       <b-navbar-brand href="#">
         <router-link to="/">
           <img
-            src="@/assets/ssafy_logo.png"
+            src="@/assets/logo.jpg"
             class="d-inline-block align-middle"
-            width="90px"
+            width="150px"
             alt="Kitten"
           />
         </router-link>

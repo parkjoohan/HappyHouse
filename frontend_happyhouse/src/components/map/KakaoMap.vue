@@ -7,8 +7,8 @@
         class="map"
         style="width: 100%; height: 100%; position: relative; overflow: hidden"
       ></div>
-      <div id="menu_wrap">
-        <input type="text" id="keyword" v-model="keyword" />
+      <div id="menu_wrap" class="bg_white">
+        키워드 : <input type="text" id="keyword" v-model="keyword" />
         <button v-on:click="searchPlaces">검색</button>
         <ul id="placesList"></ul>
         <div id="pagination"></div>
@@ -465,11 +465,11 @@ export default {
 }
 #menu_wrap {
   position: absolute;
-  top: 70px;
+  top: 0;
   left: 0;
   bottom: 0;
-  width: 230px;
-  margin: -60px 0 80px 10px;
+  width: 250px;
+  margin: 10px 0 30px 10px;
   padding: 5px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.7);
@@ -596,130 +596,5 @@ export default {
   font-weight: bold;
   cursor: default;
   color: #777;
-}
-.dot {
-  overflow: hidden;
-  float: left;
-  width: 12px;
-  height: 12px;
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png");
-}
-.dotOverlay {
-  position: relative;
-  bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  border-bottom: 2px solid #ddd;
-  float: left;
-  font-size: 12px;
-  padding: 5px;
-  background: #fff;
-}
-.dotOverlay:nth-of-type(n) {
-  border: 0;
-  box-shadow: 0px 1px 2px #888;
-}
-.number {
-  font-weight: bold;
-  color: #ee6152;
-}
-.dotOverlay:after {
-  content: "";
-  position: absolute;
-  margin-left: -6px;
-  left: 50%;
-  bottom: -8px;
-  width: 11px;
-  height: 8px;
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png");
-}
-.distanceInfo {
-  position: relative;
-  top: 5px;
-  left: 5px;
-  list-style: none;
-  margin: 0;
-}
-.distanceInfo .label {
-  display: inline-block;
-  width: 50px;
-}
-.distanceInfo:after {
-  content: none;
-}
-
-.placeinfo_wrap {
-  position: absolute;
-  bottom: 28px;
-  left: -150px;
-  width: 300px;
-}
-.placeinfo {
-  position: relative;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-  background: #fff;
-}
-.placeinfo:nth-of-type(n) {
-  border: 0;
-  box-shadow: 0px 1px 2px #888;
-}
-.placeinfo_wrap .after {
-  content: "";
-  position: relative;
-  margin-left: -12px;
-  left: 50%;
-  width: 22px;
-  height: 12px;
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png");
-}
-.placeinfo a,
-.placeinfo a:hover,
-.placeinfo a:active {
-  color: #fff;
-  text-decoration: none;
-}
-.placeinfo a,
-.placeinfo span {
-  display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.placeinfo span {
-  margin: 5px 5px 0 5px;
-  cursor: default;
-  font-size: 13px;
-}
-.placeinfo .title {
-  font-weight: bold;
-  font-size: 14px;
-  border-radius: 6px 6px 0 0;
-  margin: -1px -1px 0 -1px;
-  padding: 10px;
-  color: #fff;
-  background: #d95050;
-  background: #d95050
-    url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
-    no-repeat right 14px center;
-}
-.placeinfo .tel {
-  color: #0f7833;
-}
-.placeinfo .jibun {
-  color: #999;
-  font-size: 11px;
-  margin-top: 0;
-}
-.overlaybox {
-  position: relative;
-  width: 360px;
-  height: 350px;
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png")
-    no-repeat;
-  padding: 15px 10px;
 }
 </style>
