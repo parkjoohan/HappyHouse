@@ -1,8 +1,18 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-hotpink">
-      <b-icon icon="journals"></b-icon> Board Service
-    </h3>
+    <div class="bg">
+      <video muted autoplay loop>
+        <source src="@/assets/City.mp4" type="video/mp4" />
+      </video>
+      <div class="text">
+        <h3 style="color: white">
+          <b-icon icon="house-fill"></b-icon> Board Service
+          <b-icon icon="house-fill"></b-icon>
+        </h3>
+      </div>
+    </div>
+    <br />
+
     <router-view></router-view>
   </b-container>
 </template>
@@ -11,7 +21,7 @@ export default {
   name: "Board",
 };
 </script>
-<style scoped>
+<style>
 .underline-hotpink {
   display: inline-block;
   background: linear-gradient(

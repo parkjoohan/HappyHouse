@@ -3,7 +3,15 @@
     <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse id="nav-collapse" is-nav
+        ><router-link to="/">
+          <img
+            src="@/assets/logo.jpg"
+            class="align-middle"
+            width="150px"
+            alt="Kitten"
+          />
+        </router-link>
         <b-navbar-nav>
           <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
@@ -22,14 +30,7 @@
         </b-navbar-nav>
 
         <b-collapse id="nav-collapse" is-nav> </b-collapse>
-        <router-link to="/">
-          <img
-            src="@/assets/logo.jpg"
-            class="align-middle"
-            width="150px"
-            alt="Kitten"
-          />
-        </router-link>
+
         <b-collapse id="nav-collapse" is-nav> </b-collapse>
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center"
@@ -37,8 +38,8 @@
               <b-avatar
                 variant="primary"
                 v-text="userInfo ? userInfo.userId.charAt(0).toUpperCase() : ''"
-              ></b-avatar
-              >{{ userInfo.userName }}({{ userInfo.userId }})님 환영합니다.
+              ></b-avatar>
+              {{ userInfo.userName }}({{ userInfo.userId }})님 환영합니다.
             </p></b-nav-item
           >
           <b-nav-item class="align-self-center"
