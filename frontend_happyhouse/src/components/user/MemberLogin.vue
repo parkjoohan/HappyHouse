@@ -32,14 +32,17 @@
               variant="primary"
               class="m-1"
               @click="confirm"
-              >로그인</b-button
+              ><b-icon icon="key"></b-icon> 로그인</b-button
             >
             <b-button
               type="button"
               variant="success"
               class="m-1"
               @click="movePage"
-              >회원가입</b-button
+              ><b-icon icon="person-plus"></b-icon> 회원가입</b-button
+            >
+            <b-button @click="goBack" variant="secondary"
+              ><b-icon icon="box-arrow-left"></b-icon> BACK</b-button
             >
           </b-form>
         </b-card>

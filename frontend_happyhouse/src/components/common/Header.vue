@@ -16,14 +16,14 @@
           <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="house" font-scale="1"></b-icon> 부동산
+                <b-icon icon="building" font-scale="1"></b-icon> 부동산
               </p>
             </router-link></b-nav-item
           >
           <b-nav-item href="#"
             ><router-link :to="{ name: 'Notice' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="journal" font-scale="1"></b-icon> 게시판
+                <b-icon icon="pen" font-scale="1"></b-icon> 게시판
               </p></router-link
             ></b-nav-item
           >
@@ -60,13 +60,14 @@
           <b-nav-item-dropdown right>
             <template #button-content>
               <p class="h6 mb-2">
-                <b-icon icon="people" font-scale="2"></b-icon>
+                <b-icon icon="person-lines-fill" font-scale="2"></b-icon>
               </p>
             </template>
             <b-dropdown-item href="#"
               ><router-link :to="{ name: 'SignUp' }" class="link"
                 ><p class="h5 mb-2">
-                  <b-icon icon="person-circle"></b-icon> 회원가입
+                  <b-icon icon="person-plus"></b-icon>
+                  회원가입
                 </p></router-link
               ></b-dropdown-item
             >
