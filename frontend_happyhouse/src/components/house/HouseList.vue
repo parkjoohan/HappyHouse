@@ -1,5 +1,8 @@
 <template>
-  <b-container v-if="houses && houses.length != 0" class="bv-example-row mt-3">
+  <b-container
+    v-if="houses && houses.length != 0"
+    style="height: 500px; overflow-y: scroll"
+  >
     <house-list-row
       v-for="(house, index) in houses"
       :key="index"

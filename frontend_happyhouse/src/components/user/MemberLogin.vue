@@ -83,6 +83,10 @@ export default {
     movePage() {
       this.$router.push({ name: "SignUp" });
     },
+    goBack() {
+      this.$router.go(-1);
+      [2];
+    },
   },
 };
 </script>
