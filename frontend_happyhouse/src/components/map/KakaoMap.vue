@@ -192,10 +192,7 @@ export default {
                   //인포윈도우에 장소명을 표시합니다 : getListItem()
                   var content = `
                     <div class="overlaybox">
-                      <div class="boxtitle">${place.아파트}
-                        <div class="close" onclick="closeOverlay()" title="닫기"></div>
-                      </div>
-                      
+                      <div class="boxtitle">${place.아파트}</div>
                       <div class="first"><img src="" position:relative; style="width:247px; height:136px;" alt=""></div>
                       <ul>
                         <li class="up">
@@ -204,21 +201,14 @@ export default {
                         </li>
                         <li>
                           <span class="title">주소</span>
-                          <span class="count">${place.지번}</span>
-                        </li>
-                        <li>
-                          <span class="title">거래금액</span>
-                          <span class="count">${place.거래금액}</span>
-                        </li>
-                        <li>
-                          <span class="last" id="recenthistor" data-toggle="modal" data-target="#myModal">아파트정보 update</span>
+                          <span class="count">${place.법정동} ${place.지번}</span>
                         </li>
                       </ul>
                     </div>
                   `;
                   var position = new kakao.maps.LatLng(
-                    marker.getPosition().getLat() + 0.00033,
-                    marker.getPosition().getLng() - 0.00003
+                    marker.getPosition().getLat() + 0.00003, //위도
+                    marker.getPosition().getLng() - 0.00003 //경도
                   );
                   customOverlay = new kakao.maps.CustomOverlay({
                     position: position,
@@ -441,7 +431,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .map_wrap,
 .map_wrap * {
   margin: 0;
@@ -593,5 +583,112 @@ export default {
   font-weight: bold;
   cursor: default;
   color: #777;
+}
+.overlaybox {
+  position: relative;
+  width: 360px;
+  height: 350px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png")
+    no-repeat;
+  padding: 15px 10px;
+}
+.overlaybox div,
+ul {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.overlaybox li {
+  list-style: none;
+  text-align: left;
+}
+.overlaybox .boxtitle {
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  font-weight: bold left;
+  margin-bottom: 8px;
+}
+.overlaybox .first {
+  position: relative;
+  width: 247px;
+  height: 136px;
+  background: url("../../assets/apt.png") no-repeat;
+  margin-bottom: 8px;
+}
+.first .text {
+  color: #fff;
+  font-weight: bold;
+}
+.first .triangle {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 0;
+  left: 0;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png")
+    no-repeat;
+  padding: 6px;
+  font-size: 18px;
+}
+.first .movietitle {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 7px 15px;
+  font-size: 14px;
+}
+.overlaybox ul {
+  width: 247px;
+}
+.overlaybox li {
+  position: relative;
+  margin-bottom: 2px;
+  background: #2b2d36;
+  padding: 5px 10px;
+  color: #aaabaf;
+  line-height: 1;
+}
+.overlaybox li span {
+  display: inline-block;
+}
+.overlaybox li .number {
+  font-size: 16px;
+  font-weight: bold;
+}
+.overlaybox li .title {
+  font-size: 13px;
+}
+.overlaybox ul .arrow {
+  position: absolute;
+  margin-top: 8px;
+  right: 25px;
+  width: 5px;
+  height: 3px;
+  background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png")
+    no-repeat;
+}
+.overlaybox li .up {
+  background-position: 0 -40px;
+}
+.overlaybox li .down {
+  background-position: 0 -60px;
+}
+.overlaybox li .count {
+  position: absolute;
+  margin-top: 5px;
+  right: 15px;
+  font-size: 10px;
+}
+.overlaybox li:hover {
+  color: #fff;
+  background: #d24545;
+}
+.overlaybox li:hover .up {
+  background-position: 0 0px;
+}
+.overlaybox li:hover .down {
+  background-position: 0 -20px;
 }
 </style>
