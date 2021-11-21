@@ -25,4 +25,12 @@ a:hover {
 a.router-link-exact-active {
   color: #42b983;
 }
+a.adver {
+  display: inline-block;
+  position: sticky;
+  top: 30px;
+  width: 80px;
+  height: 80px;
+  background: blue;
+}
 </style>
