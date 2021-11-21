@@ -8,7 +8,7 @@
         style="width: 100%; height: 100%; position: relative; overflow: hidden"
       ></div>
       <div id="menu_wrap" class="bg_white">
-        키워드 : <input type="text" id="keyword" v-model="keyword" />
+        <input type="text" id="keyword" v-model="keyword" />
         <button v-on:click="searchPlaces">검색</button>
         <ul id="placesList"></ul>
         <div id="pagination"></div>

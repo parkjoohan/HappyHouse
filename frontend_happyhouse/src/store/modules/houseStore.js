@@ -6,7 +6,7 @@ const houseStore = {
     sidos: [{ value: null, text: "선택하세요" }],
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
-    dong: "11",
+    dong: "00",
     houses: [],
     house: null,
   },
@@ -38,7 +38,7 @@ const houseStore = {
       state.dong = dong;
     },
     SET_HOUSE_LIST: (state, data) => {
-      // console.log(data.aptList);
+      //console.log(data.aptList, data.dongCode);
       data.aptList.forEach(function (item) {
         if (item.법정동읍면동코드 == data.dongCode) {
           //console.log(item);
@@ -50,13 +50,13 @@ const houseStore = {
       state.house = house;
     },
     CLEAR_SIDO_LIST: (state) => {
-      state.sidos = [{ value: null, text: "선택하세요" }];
+      state.sidos = [{ value: null, text: "시도" }];
     },
     CLEAR_GUGUN_LIST: (state) => {
-      state.guguns = [{ value: null, text: "선택하세요" }];
+      state.guguns = [{ value: null, text: "시군구" }];
     },
     CLEAR_DONG_LIST: (state) => {
-      state.dongs = [{ value: null, text: "선택하세요" }];
+      state.dongs = [{ value: null, text: "읍면동" }];
     },
     CLEAR_HOUSE_LIST: (state) => {
       state.houses = [];
@@ -106,23 +106,22 @@ const houseStore = {
       );
     },
 
-    getHouseList: ({ commit }, dongCode) => {
+    getHouseList: ({ commit }, data) => {
       // vue cli enviroment variables 검색
       //.env.local file 생성.
       // 반드시 VUE_APP으로 시작해야 한다.
       // const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
       //console.log(process.env.VUE_APP_APT_DEAL_API_KEY);
-      commit("SET_DONG", dongCode);
+      commit("SET_DONG", data.dongCode);
       const SERVICE_KEY =
         "DJcJ%2FHa%2BkQ1Rm6BZhfMhPQr30Xfftl2I0uDMFe%2B8xgH1NAD78o1ZK7Du38nI8TEVGAvGjz16PGYMVKerF0RLlA%3D%3D";
       const params = {
-        LAWD_CD: dongCode.substring(0, 5), //요청변수 : 지역코드(법정동시군구코드)
+        LAWD_CD: data.dongCode.substring(0, 5), //요청변수 : 지역코드(법정동시군구코드)
         pageNo: encodeURIComponent("1"),
         numOfRows: encodeURIComponent("3000"),
-        DEAL_YMD: "202110",
+        DEAL_YMD: data.dealYMD,
         serviceKey: decodeURIComponent(SERVICE_KEY),
       };
-      //console.log(dongCode.slice(-5) + "동 검색");
       houseList(
         params,
         (response) => {
@@ -130,7 +129,7 @@ const houseStore = {
 
           commit("SET_HOUSE_LIST", {
             aptList: response.data.response.body.items.item,
-            dongCode: dongCode.slice(-5),
+            dongCode: data.dongCode.slice(-5),
           });
         },
         (error) => {

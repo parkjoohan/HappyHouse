@@ -26,6 +26,8 @@
           <house-detail />
         </b-col>
       </b-row>
+    </b-container>
+    <b-container class="bv-example-row mt-5 text-center">
       <b-row>
         <b-col cols="4" align="center">
           <h4>{{ dongName }} 거주인구요약정보</h4>
@@ -95,7 +97,7 @@ export default {
         params: {
           //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
           //링크 > 실직적 예제 > 인증 루프코딩
-          accessToken: "544cff05-2d7f-4cc0-ab6c-912af0438f72", //4시간 마다 갱신ㅠㅠ
+          accessToken: "a3ec0a23-51c0-4515-8a3e-b4a95f253f48", //4시간 마다 갱신ㅠㅠ
           adm_cd: this.hCode.data[0],
         },
       });

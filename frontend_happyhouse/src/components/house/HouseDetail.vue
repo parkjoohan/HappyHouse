@@ -1,9 +1,9 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
     <b-row>
-      <b-col
-        ><h3>{{ house.아파트 }}</h3></b-col
-      >
+      <b-col>
+        <b-alert show variant="primary">{{ house.아파트 }} </b-alert>
+      </b-col>
     </b-row>
     <b-row class="mb-2 mt-1">
       <b-col
@@ -15,13 +15,6 @@
         <b-alert show variant="secondary"
           >일련번호 : {{ house.일련번호 }}</b-alert
         >
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="primary"
-          >아파트 이름 : {{ house.아파트 }}
-        </b-alert>
       </b-col>
     </b-row>
     <b-row>
