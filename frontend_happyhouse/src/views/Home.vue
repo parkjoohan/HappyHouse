@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <Header />
-
     <div class="bg">
       <video muted autoplay loop>
         <source src="@/assets/City.mp4" type="video/mp4" />
@@ -13,8 +11,6 @@
         </p>
       </div>
     </div>
-
-    <!-- <router-view /><br /> -->
 
     <div class="container">
       <section class="item item-a">
@@ -51,8 +47,6 @@
         <h4>바다와 먹거리의 중심!</h4>
       </section>
     </div>
-
-    <Footer />
   </div>
 </template>
 

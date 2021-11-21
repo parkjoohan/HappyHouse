@@ -135,15 +135,13 @@ export default {
 
     //////////////////////////////////////////아파트 마킹//////////////////////////////////////////
     displayMarkersWithAddress(placeList) {
-      console.log(placeList);
       var places = {};
       for (let i = 0; i < placeList.length; i++) {
         if (!places[placeList[i].아파트]) {
-          console.log(places[placeList[i].아파트]);
+          //console.log(places[placeList[i].아파트]);
           places[placeList[i].아파트] = placeList[i];
         }
       }
-      console.log(places);
       var bounds = new kakao.maps.LatLngBounds();
       this.removeMarker();
 
@@ -157,8 +155,7 @@ export default {
             // 정상적으로 검색이 완료됐으면
             if (status === kakao.maps.services.Status.OK) {
               placePosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-              //console.log(placePosition);
-              console.log(key, value);
+              console.log(placePosition, key, value);
               //addMarker()
               var imageSrc =
                   "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png",

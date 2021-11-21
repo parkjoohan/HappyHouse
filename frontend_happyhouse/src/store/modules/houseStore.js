@@ -6,12 +6,16 @@ const houseStore = {
     sidos: [{ value: null, text: "선택하세요" }],
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
+    dong: "11",
     houses: [],
     house: null,
   },
   getters: {
     housesChange(state) {
       return state.houses;
+    },
+    dongChange(state) {
+      return state.dong;
     },
   },
   mutations: {
@@ -30,6 +34,9 @@ const houseStore = {
         state.dongs.push({ value: dong.dongCode, text: dong.dongName });
       });
     },
+    SET_DONG: (state, dong) => {
+      state.dong = dong;
+    },
     SET_HOUSE_LIST: (state, data) => {
       // console.log(data.aptList);
       data.aptList.forEach(function (item) {
@@ -38,9 +45,6 @@ const houseStore = {
           state.houses.push(item);
         }
       });
-      //지도에 어떻게 찍을까
-      // this.$emit("addMarker", this.houses);
-      // bus.$emit("addMarker", this.houses);
     },
     SET_DETAIL_HOUSE: (state, house) => {
       state.house = house;
@@ -108,6 +112,7 @@ const houseStore = {
       // 반드시 VUE_APP으로 시작해야 한다.
       // const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
       //console.log(process.env.VUE_APP_APT_DEAL_API_KEY);
+      commit("SET_DONG", dongCode);
       const SERVICE_KEY =
         "DJcJ%2FHa%2BkQ1Rm6BZhfMhPQr30Xfftl2I0uDMFe%2B8xgH1NAD78o1ZK7Du38nI8TEVGAvGjz16PGYMVKerF0RLlA%3D%3D";
       const params = {
