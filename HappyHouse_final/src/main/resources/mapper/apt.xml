@@ -36,4 +36,10 @@
 		order by aptName
 	</select>
 	
+	<select id="getHCode" parameterType="string" resultType="String">
+		select hCode
+		from dongcode_conversion
+		where bCode = #{dong}
+	</select>
+	
 </mapper>

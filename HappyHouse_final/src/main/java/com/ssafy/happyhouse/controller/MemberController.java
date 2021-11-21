@@ -99,7 +99,7 @@ public class MemberController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
-	@ApiOperation(value = "새로운 회원 정보를 입력(등록)한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "새로운 회원 정보 입력(등록)", notes ="DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping("join")
 	public ResponseEntity<String> registerMember(@RequestBody MemberDto memberDto) {
 		logger.debug("registerMember - 호출");
@@ -130,7 +130,7 @@ public class MemberController {
 //		return new ResponseEntity<>(memberService.getMember(userId), HttpStatus.OK);
 //	}
 	
-	@ApiOperation(value = "회원 정보를 수정한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "회원 정보 수정", notes ="DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping("{userId}")
 	public ResponseEntity<String> modifyMember(@RequestBody MemberDto memberDto){
 		logger.debug("modifyMember - 호출");
@@ -140,7 +140,7 @@ public class MemberController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "회원 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "회원 정보 삭제", notes ="DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("{userId}")
 	public ResponseEntity<String> deleteMember(@PathVariable("userId") String userId){
 		logger.debug("deleteMember - 호출");

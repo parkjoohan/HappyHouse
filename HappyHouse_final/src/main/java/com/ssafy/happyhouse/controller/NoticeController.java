@@ -78,14 +78,14 @@ public class NoticeController {
 //		return mav;
 //	}
 	
-	@ApiOperation(value = "모든 게시글의 정보를 반환한다.", response = List.class)
+	@ApiOperation(value = "모든 게시글의 정보를 반환", response = List.class)
 	@GetMapping
 	public ResponseEntity<List<NoticeDto>> listNotice(){
 		logger.debug("listNotice - 호출");
 		return new ResponseEntity<>(noticeService.listNotice(), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "새로운 게시글을 등록함. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "새로운 게시글 등록", notes = "DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
 	public ResponseEntity<String> registerNotice(@RequestBody NoticeDto noticeDto){
 		logger.debug("registerNotice - 호출");
@@ -95,14 +95,14 @@ public class NoticeController {
 		return new ResponseEntity<>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "noticeNo에 해당하는 게시글의 정보를 반환한다.", response = NoticeDto.class)
+	@ApiOperation(value = "noticeNo에 해당하는 게시글 반환", response = NoticeDto.class)
 	@GetMapping("/{noticeNo}")
 	public ResponseEntity<NoticeDto> noticeView(@PathVariable int noticeNo){
 		logger.debug("noticeView - 호출");
 		return new ResponseEntity<>(noticeService.getNotice(noticeNo), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "noticeNo에 해당하는 게시글의 정보를 수정한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "noticeNo에 해당하는 게시글 수정", notes ="DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping("{noticeNo}")
 	public ResponseEntity<String> modifyNotice(@RequestBody NoticeDto noticeDto){
 		logger.debug("modifyNotice - 호출");
@@ -112,7 +112,7 @@ public class NoticeController {
 		return new ResponseEntity<>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
-	@ApiOperation(value = "noticeNo에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "noticeNo에 해당하는 게시글 삭제", notes = "DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("{noticeNo}")
 	public ResponseEntity<String> deleteNotice(@PathVariable int noticeNo){
 		logger.debug("deleteNotice - 호출");

@@ -35,5 +35,10 @@ public class HouseMapServiceImpl implements HouseMapService {
 	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
 		return sqlSession.getMapper(HouseMapMapper.class).getAptInDong(dong);
 	}
+	
+	@Override
+	public List<String> getHCode(String dong) throws Exception {
+		return sqlSession.getMapper(HouseMapMapper.class).getHCode(dong);
+	}
 
 }
