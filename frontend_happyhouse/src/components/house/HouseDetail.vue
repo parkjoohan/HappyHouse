@@ -46,6 +46,13 @@
         >
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <b-alert show variant="secondary"
+          >거래유형 : {{ house.거래유형 }}
+        </b-alert>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 

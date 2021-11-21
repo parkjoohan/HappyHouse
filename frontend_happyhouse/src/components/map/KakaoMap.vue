@@ -592,8 +592,7 @@ export default {
     no-repeat;
   padding: 15px 10px;
 }
-.overlaybox div,
-ul {
+.overlaybox div {
   overflow: hidden;
   margin: 0;
   padding: 0;
