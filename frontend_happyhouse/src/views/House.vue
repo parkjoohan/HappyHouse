@@ -97,7 +97,7 @@ export default {
         params: {
           //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
           //링크 > 실직적 예제 > 인증 루프코딩
-          accessToken: "959fc3c2-1d4b-4232-9b3e-22848e039035", //4시간 마다 갱신ㅠㅠ
+          accessToken: "daa1c845-ad3f-42c1-bef7-778409f2eb45", //4시간 마다 갱신ㅠㅠ
           adm_cd: this.hCode.data[0],
         },
       });
