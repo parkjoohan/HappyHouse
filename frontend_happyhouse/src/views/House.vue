@@ -119,8 +119,8 @@ export default {
       //console.log(newArray);
       this.chartData = {
         hoverBackgroundColor: "red",
-        borderWidth: "10px",
-        hoverBorderWidth: "10px",
+        borderWidth: "5px",
+        hoverBorderWidth: "5px",
         labels: [
           "10대 미만",
           "10대",

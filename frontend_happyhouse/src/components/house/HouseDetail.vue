@@ -7,7 +7,12 @@
     </b-row>
     <b-row class="mb-2 mt-1">
       <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
+        ><b-img
+          :src="require('@/assets/apt.png')"
+          width="50px"
+          height="50px"
+          fluid-grow
+        ></b-img
       ></b-col>
     </b-row>
     <table class="info-table">
@@ -116,6 +121,10 @@ export default {
 #field {
   margin-top: 2%;
   margin-bottom: 5%;
+}
+img.img-fluid {
+  max-width: 50%;
+  height: auto;
 }
 table.info-table {
   border-collapse: collapse;
