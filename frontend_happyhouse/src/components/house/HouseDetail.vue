@@ -38,19 +38,19 @@
     </b-row>
     <b-row>
       <b-col>
+        <b-alert show variant="secondary"
+          >전용면적 : {{ house.전용면적 }}m<sup>2</sup></b-alert
+        >
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
         <b-alert show variant="danger"
           >거래금액 :
           {{
             (parseInt(house.거래금액.replace(",", "")) * 10000) | price
           }}원</b-alert
         >
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="secondary"
-          >거래유형 : {{ house.거래유형 }}
-        </b-alert>
       </b-col>
     </b-row>
   </b-container>

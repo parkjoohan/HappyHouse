@@ -114,7 +114,7 @@ const houseStore = {
       //console.log(process.env.VUE_APP_APT_DEAL_API_KEY);
       commit("SET_DONG", data.dongCode);
       const SERVICE_KEY =
-        "DJcJ%2FHa%2BkQ1Rm6BZhfMhPQr30Xfftl2I0uDMFe%2B8xgH1NAD78o1ZK7Du38nI8TEVGAvGjz16PGYMVKerF0RLlA%3D%3D";
+        "0mWhKlU4jjNZkR%2BV6%2BUK%2FI6fdhaq3SOVSP5RI%2Bkv71HluGhhfptpedTQjUnLWrlyzaHkuoiJen5xxoAk%2F1qwTA%3D%3D";
       const params = {
         LAWD_CD: data.dongCode.substring(0, 5), //요청변수 : 지역코드(법정동시군구코드)
         pageNo: encodeURIComponent("1"),

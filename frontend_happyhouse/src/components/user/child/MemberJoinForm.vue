@@ -68,6 +68,13 @@
               type="text"
               required
               placeholder="주소를 입력하세요"
+              @click="address_kakao"
+            ></b-form-input>
+            <b-form-input
+              v-model="user.userAddressDetail"
+              type="text"
+              required
+              placeholder="상세 주소를 입력하세요"
             ></b-form-input>
           </b-form-group>
 
@@ -114,6 +121,7 @@ export default {
         userPwd: "",
         userName: "",
         userAddress: "",
+        userAddressDetail: "",
         userPhone: "",
       },
       idresult: false,
@@ -158,6 +166,7 @@ export default {
       );
     },
     registerMember() {
+      this.user.userAddress += " " + this.user.userAddressDetail;
       joinMember(
         this.user,
         ({ data }) => {
@@ -176,6 +185,13 @@ export default {
     goBack() {
       this.$router.go(-1);
       [2];
+    },
+    address_kakao() {
+      new window.daum.Postcode({
+        oncomplete: function (data) {
+          document.getElementById("userAddress").value = data.address;
+        },
+      }).open();
     },
   },
 };
