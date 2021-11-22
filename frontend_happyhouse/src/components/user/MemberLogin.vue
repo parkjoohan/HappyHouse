@@ -29,20 +29,20 @@
             </b-form-group>
             <b-button
               type="button"
-              variant="primary"
+              variant="success"
               class="m-1"
               @click="confirm"
               ><b-icon icon="key"></b-icon> 로그인</b-button
             >
             <b-button
               type="button"
-              variant="success"
+              variant="primary"
               class="m-1"
               @click="movePage"
               ><b-icon icon="person-plus"></b-icon> 회원가입</b-button
             >
-            <b-button @click="goBack" variant="secondary"
-              ><b-icon icon="box-arrow-left"></b-icon> BACK</b-button
+            <b-button @click="goHome" variant="secondary" class="m-1"
+              ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
             >
           </b-form>
         </b-card>
@@ -83,8 +83,8 @@ export default {
     movePage() {
       this.$router.push({ name: "SignUp" });
     },
-    goBack() {
-      this.$router.go(-1);
+    goHome() {
+      this.$router.push("/");
       [2];
     },
   },

@@ -99,8 +99,11 @@
           <b-button type="reset" variant="danger" class="m-1"
             ><b-icon icon="arrow-clockwise"></b-icon> 초기화</b-button
           >
-          <b-button @click="goBack" variant="secondary"
-            ><b-icon icon="box-arrow-left"></b-icon> BACK</b-button
+          <b-button @click="goHome" variant="secondary" class="m-1"
+            ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
+          ><b-h3>&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;회원이라면</b-h3>
+          <b-button @click="goLogin" variant="success" class="m-1"
+            ><b-icon icon="box-arrow-left"></b-icon> 로그인</b-button
           >
         </b-form>
       </b-card>
@@ -182,9 +185,12 @@ export default {
         }
       );
     },
-    goBack() {
-      this.$router.go(-1);
-      [2];
+    goHome() {
+      this.$router.push("/");
+    },
+    goLogin() {
+      this.$router.push("/user/singin");
+      [3];
     },
     address_kakao() {
       new window.daum.Postcode({
