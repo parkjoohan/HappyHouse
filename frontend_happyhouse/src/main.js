@@ -22,6 +22,7 @@ new Vue({
   router,
   store,
   async beforeCreate() {
+    //새로고침해도 로그인 상태가 유지되도록
     let token = sessionStorage.getItem("access-token");
     if (memberStore.state.userInfo == null && token) {
       await memberStore.dispatch("getUserInfo", token);

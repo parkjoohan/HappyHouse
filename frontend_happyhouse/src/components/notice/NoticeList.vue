@@ -8,25 +8,30 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col v-if="articles.length">
-        <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
-            <b-tr>
-              <b-th>글번호</b-th>
-              <b-th>제목</b-th>
-              <b-th>작성자</b-th>
-              <b-th>작성일</b-th>
-            </b-tr>
-          </b-thead>
-          <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <notice-list-row
-              v-for="(article, index) in articles"
-              :key="index"
-              v-bind="article"
-            />
-          </tbody>
-        </b-table-simple>
+      <b-col>
+        <b-table
+          id="noticeTable"
+          class="text-center"
+          :items="noticeList"
+          :per-page="perPage"
+          :current-page="currentPage"
+          :fields="fields"
+          @row-clicked="rowClick"
+          hover
+        >
+          <template #cell(subject)="data">
+            <span v-html="data.value"></span>
+          </template>
+        </b-table>
+        <b-pagination
+          v-model="currentPage"
+          :per-page="perPage"
+          pills
+          :total-rows="rows"
+          :limit="6"
+          align="center"
+          aria-controls="noticeTable"
+        ></b-pagination>
       </b-col>
       <!-- <b-col v-else class="text-center">작성된 글이 없습니다.</b-col> -->
     </b-row>
@@ -34,32 +39,54 @@
 </template>
 
 <script>
-import NoticeListRow from "@/components/notice/child/NoticeListRow";
+//import NoticeListRow from "@/components/notice/child/NoticeListRow";
 import { listArticle } from "@/api/notice.js";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "NoticeList",
   components: {
-    NoticeListRow,
+    //NoticeListRow,
   },
   data() {
     return {
-      articles: [],
+      noticeList: [],
+      currentPage: 1,
+      perPage: 10,
+      fields: [
+        { key: "articleNo", label: "글번호", tdClass: "articleNo" },
+        { key: "subject", label: "제목", tdClass: "subject" },
+        { key: "userId", label: "작성자", tdClass: "userId" },
+        { key: "regTime", label: "등록일", tdClass: "regTime" },
+      ],
     };
   },
   created() {
     listArticle(
       (response) => {
-        this.articles = response.data;
+        this.noticeList = response.data;
+        console.log(this.noticeList);
       },
       (error) => {
         console.log(error);
       }
     );
+    this.currentPage = this.getCurrentPage;
+  },
+  computed: {
+    ...mapGetters("noticeStore", ["getCurrentPage"]),
+    rows() {
+      return this.noticeList.length;
+    },
   },
   methods: {
+    ...mapActions("noticeStore", ["setNotice", "setCurrentPage"]),
     moveWrite() {
       this.$router.push({ name: "NoticeWrite" });
+    },
+    rowClick(item) {
+      this.setCurrentPage(this.currentPage);
+      this.$router.push({ name: "NoticeView", params: { no: item.articleNo } });
     },
   },
 };
