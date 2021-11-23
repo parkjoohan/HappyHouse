@@ -30,7 +30,7 @@
           <b-nav-item href="#"
             ><router-link :to="{ name: 'News' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="pen" font-scale="1"></b-icon> 뉴스
+                <b-icon icon="newspaper" font-scale="1"></b-icon> 뉴스
               </p></router-link
             ></b-nav-item
           >
