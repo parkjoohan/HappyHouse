@@ -107,7 +107,7 @@ export default {
         params: {
           //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
           //링크 > 실직적 예제 > 인증 루프코딩
-          accessToken: "0d06d485-5b7c-405b-ab03-f9372dac030b", //4시간 마다 갱신ㅠㅠ
+          accessToken: "8e904e65-732f-4393-8f7e-314574316dd6", //4시간 마다 갱신ㅠㅠ
           adm_cd: this.hCode.data[0],
         },
       });
@@ -117,7 +117,7 @@ export default {
 
       let houseSummary = await axios.get(HOUSE_URL, {
         params: {
-          accessToken: "0d06d485-5b7c-405b-ab03-f9372dac030b",
+          accessToken: "8e904e65-732f-4393-8f7e-314574316dd6",
           adm_cd: this.hCode.data[0],
         },
       });
@@ -126,7 +126,7 @@ export default {
 
       let ocptnSummary = await axios.get(OCPTN_URL, {
         params: {
-          accessToken: "0d06d485-5b7c-405b-ab03-f9372dac030b",
+          accessToken: "8e904e65-732f-4393-8f7e-314574316dd6",
           adm_cd: this.hCode.data[0],
         },
       });
