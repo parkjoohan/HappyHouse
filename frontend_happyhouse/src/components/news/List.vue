@@ -40,6 +40,7 @@
     <b-pagination
       v-model="currentPage"
       :per-page="perPage"
+      pills
       :total-rows="dispaly"
       :limit="6"
       align="center"
