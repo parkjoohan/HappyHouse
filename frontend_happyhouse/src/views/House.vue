@@ -28,18 +28,23 @@
       </b-row>
     </b-container>
     <b-container class="bv-example-row mt-5 text-center">
-      <b-row>
-        <b-col cols="4" align="center">
-          <h4>{{ dongName }} 거주인구요약정보</h4>
-          <pie-chart :chart-data="chartData"></pie-chart>
+      <b-row class="mb-2 text-center">
+        <b-col
+          ><h2>{{ dongName }}</h2></b-col
+        >
+      </b-row>
+      <b-row class="mt-4 mb-2 text-center">
+        <b-col cols="4">
+          <h4>거주인구 요약정보</h4>
+          <pie-chart1 :chart-data="chartData1"></pie-chart1>
         </b-col>
-        <b-col cols="4" align="center">
-          <h4>{{ dongName }} 거주인구요약정보</h4>
-          <pie-chart :chart-data="chartData"></pie-chart>
+        <b-col cols="4">
+          <h4>거처종류 요약정보</h4>
+          <pie-chart2 :chart-data="chartData2"></pie-chart2>
         </b-col>
-        <b-col cols="4" align="center">
-          <h4>{{ dongName }} 거주인구요약정보</h4>
-          <pie-chart :chart-data="chartData"></pie-chart>
+        <b-col cols="4">
+          <h4>점유형태 요약정보</h4>
+          <pie-chart3 :chart-data="chartData3"></pie-chart3>
         </b-col>
       </b-row>
     </b-container>
@@ -50,12 +55,14 @@ import KakaoMap from "@/components/map/KakaoMap.vue";
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
-import PieChart from "@/components/house/js/PieChart.js";
+import PieChart1 from "@/components/house/js/PieChart.js";
+import PieChart2 from "@/components/house/js/PieChart2.js";
+import PieChart3 from "@/components/house/js/PieChart3.js";
 
 import { mapGetters } from "vuex";
 const houseStore = "houseStore";
 
-import { API_BASE_URL, POPULATION_URL } from "@/config";
+import { API_BASE_URL, POPULATION_URL, HOUSE_URL, OCPTN_URL } from "@/config";
 import axios from "axios";
 
 export default {
@@ -65,14 +72,17 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
-    PieChart,
+    PieChart1,
+    PieChart2,
+    PieChart3,
   },
   data() {
     return {
-      chartData: null,
       dongName: null,
       hCode: [],
-      pInfo: null,
+      chartData1: null,
+      chartData2: null,
+      chartData3: null,
     };
   },
   mounted() {},
@@ -93,34 +103,49 @@ export default {
       });
       console.log("행정동 코드", this.hCode.data);
 
-      let response = await axios.get(POPULATION_URL, {
+      let pplSummary = await axios.get(POPULATION_URL, {
         params: {
           //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
           //링크 > 실직적 예제 > 인증 루프코딩
-          accessToken: "daa1c845-ad3f-42c1-bef7-778409f2eb45", //4시간 마다 갱신ㅠㅠ
+          accessToken: "b83910b2-5c7e-4afb-8a1c-658e92f9f639", //4시간 마다 갱신ㅠㅠ
           adm_cd: this.hCode.data[0],
         },
       });
-      this.pInfo = response.data.result[0]; //동 인구 정보
-      this.dongName = this.pInfo.adm_nm;
-      this.drowChart();
-    },
-    drowChart() {
-      let newArray = [];
-      newArray.push(this.pInfo.teenage_less_than_cnt);
-      newArray.push(this.pInfo.teenage_cnt);
-      newArray.push(this.pInfo.twenty_cnt);
-      newArray.push(this.pInfo.thirty_cnt);
-      newArray.push(this.pInfo.forty_cnt);
-      newArray.push(this.pInfo.fifty_cnt);
-      newArray.push(this.pInfo.sixty_cnt);
-      newArray.push(this.pInfo.seventy_more_than_cnt);
+      console.log("거주인구", pplSummary.data.result);
+      this.dongName = pplSummary.data.result[0].adm_nm;
+      this.drowChart1(pplSummary.data.result[0]);
 
-      //console.log(newArray);
-      this.chartData = {
-        hoverBackgroundColor: "red",
-        borderWidth: "5px",
-        hoverBorderWidth: "5px",
+      let houseSummary = await axios.get(HOUSE_URL, {
+        params: {
+          accessToken: "b83910b2-5c7e-4afb-8a1c-658e92f9f639",
+          adm_cd: this.hCode.data[0],
+        },
+      });
+      console.log("거처종류", houseSummary.data.result);
+      this.drowChart2(houseSummary.data.result[0]);
+
+      let ocptnSummary = await axios.get(OCPTN_URL, {
+        params: {
+          accessToken: "b83910b2-5c7e-4afb-8a1c-658e92f9f639",
+          adm_cd: this.hCode.data[0],
+        },
+      });
+      console.log("점유형태", ocptnSummary.data.result);
+      this.drowChart3(ocptnSummary.data.result[0]);
+    },
+    drowChart1(data) {
+      let newArray = [
+        data.teenage_less_than_cnt,
+        data.teenage_cnt,
+        data.twenty_cnt,
+        data.thirty_cnt,
+        data.forty_cnt,
+        data.fifty_cnt,
+        data.sixty_cnt,
+        data.seventy_more_than_cnt,
+      ];
+
+      this.chartData1 = {
         labels: [
           "10대 미만",
           "10대",
@@ -133,7 +158,6 @@ export default {
         ],
         datasets: [
           {
-            label: "Data One",
             backgroundColor: [
               "#F072A7",
               "#FF9E3D",
@@ -144,6 +168,53 @@ export default {
               "#E46651",
               "#5CA4F6",
             ],
+            data: newArray,
+          },
+        ],
+      };
+    },
+    drowChart2(data) {
+      let newArray = [
+        data.apart_per,
+        data.row_house_per,
+        data.detach_house_per,
+        data.dom_soc_fac_per,
+        data.officetel_per,
+        data.etc_per,
+      ];
+
+      this.chartData2 = {
+        labels: [
+          "아파트",
+          "연립/다세대",
+          "단독주택",
+          "기숙사 및 사회시설",
+          "오피스텔",
+          "기타",
+        ],
+        datasets: [
+          {
+            backgroundColor: [
+              "#F072A7",
+              "#FF9E3D",
+              "#FCDF4F ",
+              "#8ED058",
+              "#41B883",
+              "#716FFF",
+            ],
+            data: newArray,
+          },
+        ],
+      };
+    },
+    drowChart3(data) {
+      let newArray = [data.self_per, data.lease_per, data.mrp_per];
+
+      this.chartData3 = {
+        labels: ["자가비율", "전세비율", "월세비율"],
+        datasets: [
+          {
+            backgroundColor: ["#FCDF4F ", "#8ED058", "#716FFF", "#5CA4F6"],
             data: newArray,
           },
         ],

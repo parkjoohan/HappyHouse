@@ -26,6 +26,8 @@
         교통정보 보기
         <input type="checkbox" id="chkBicycle" @click="setOverlayMapTypeId()" />
         자전거도로 정보 보기
+        <input type="checkbox" id="chkCctv" @click="setOverlayMapTypeId()" />
+        cctv 정보 보기
       </p>
     </div>
   </div>
@@ -34,6 +36,7 @@
 <script>
 import { mapGetters } from "vuex";
 const houseStore = "houseStore";
+import { cctvList } from "@/api/cctv.js";
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -41,6 +44,7 @@ var customOverlay;
 var geocoder = new kakao.maps.services.Geocoder();
 var map;
 var markers = [];
+var cctvMarkers = [];
 export default {
   name: "KakaoMap",
   data() {
@@ -49,15 +53,22 @@ export default {
       // markers: [],
       ps: null,
       keyword: "",
+      cctvList: [],
     };
   },
   computed: {
-    ...mapGetters(houseStore, ["housesChange"]),
+    ...mapGetters(houseStore, ["housesChange", "dongChange"]),
   },
   watch: {
     housesChange() {
       //houseStorage의 houses가 변경되면 마커 새로 찍기
       this.displayMarkersWithAddress(this.housesChange);
+    },
+    dongChange() {
+      this.removeCctvMarker(); //기존 cctv마커 치우기
+      document.getElementById("chkCctv").checked = false; //체크박스 해제
+      //houseStorage의 dong이 변경되면 cctv 정보 가져오기
+      this.getCctvList();
     },
   },
   props: {},
@@ -110,7 +121,8 @@ export default {
       var chkTerrain = document.getElementById("chkTerrain"),
         chkTraffic = document.getElementById("chkTraffic"),
         chkBicycle = document.getElementById("chkBicycle"),
-        chkUseDistrict = document.getElementById("chkUseDistrict");
+        chkUseDistrict = document.getElementById("chkUseDistrict"),
+        chkCctv = document.getElementById("chkCctv");
       // 지도 타입을 제거합니다
       for (var type in mapTypes) {
         map.removeOverlayMapTypeId(mapTypes[type]);
@@ -131,6 +143,60 @@ export default {
       if (chkBicycle.checked) {
         map.addOverlayMapTypeId(mapTypes.bicycle);
       }
+      if (chkCctv.checked) {
+        this.displayCctvMarkers(this.cctvList);
+      } else {
+        this.removeCctvMarker();
+      }
+    },
+
+    //////////////////////////////////////////CCTV 마킹//////////////////////////////////////////
+    getCctvList() {
+      cctvList(
+        this.dongChange,
+        (response) => {
+          this.cctvList = response.data;
+          console.log("cctv리스트", this.cctvList);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    displayCctvMarkers(cctvList) {
+      //cctvList에 있는 정보로 마커 찍기..
+      for (var i = 0; i < cctvList.length; i++) {
+        this.addCctvMarker(cctvList[i]);
+      }
+    },
+    removeCctvMarker() {
+      for (var i = 0; i < cctvMarkers.length; i++) {
+        cctvMarkers[i].setMap(null);
+      }
+      cctvMarkers = [];
+    },
+    addCctvMarker(position) {
+      var imageSrc = require("@/assets/marker_cctv.png"),
+        imageSize = new kakao.maps.Size(25, 25), // 마커이미지의 크기
+        imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정
+
+      var markerImage = new kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption
+        ),
+        markerPosition = new kakao.maps.LatLng(
+          position.wgsxpt,
+          position.wgsypt
+        ); // 마커가 표시될 위치
+
+      var marker = new kakao.maps.Marker({
+        position: markerPosition, // 마커의 위치
+        image: markerImage,
+      });
+
+      marker.setMap(map); // 지도 위에 마커 표출
+      cctvMarkers.push(marker); // 배열에 생성된 마커 추가
     },
 
     //////////////////////////////////////////아파트 마킹//////////////////////////////////////////

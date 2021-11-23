@@ -102,6 +102,8 @@ export default {
     ...mapState(houseStore, ["sidos", "guguns", "dongs"]),
   },
   created() {
+    this.CLEAR_HOUSE_LIST();
+    this.CLEAR_DETAIL_HOUSE();
     this.CLEAR_SIDO_LIST();
     this.getSido();
   },
@@ -117,6 +119,7 @@ export default {
       "CLEAR_GUGUN_LIST",
       "CLEAR_DONG_LIST",
       "CLEAR_HOUSE_LIST",
+      "CLEAR_DETAIL_HOUSE",
     ]),
     gugunList() {
       this.CLEAR_GUGUN_LIST();
@@ -130,6 +133,7 @@ export default {
     },
     searchApt() {
       this.CLEAR_HOUSE_LIST();
+      this.CLEAR_DETAIL_HOUSE();
       if (this.dongCode) {
         this.getHouseList({
           dongCode: this.dongCode,

@@ -61,6 +61,9 @@ const houseStore = {
     CLEAR_HOUSE_LIST: (state) => {
       state.houses = [];
     },
+    CLEAR_DETAIL_HOUSE: (state) => {
+      state.house = null;
+    },
   },
 
   actions: {

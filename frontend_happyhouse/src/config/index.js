@@ -4,4 +4,10 @@ const APT_DEAL_URL =
 const POPULATION_URL =
   "https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/pplsummary.json?";
 
-export { API_BASE_URL, APT_DEAL_URL, POPULATION_URL };
+const HOUSE_URL =
+  "https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/housesummary.json";
+
+const OCPTN_URL =
+  "https://sgisapi.kostat.go.kr/OpenAPI3/startupbiz/ocptnsummary.json";
+
+export { API_BASE_URL, APT_DEAL_URL, POPULATION_URL, HOUSE_URL, OCPTN_URL };
