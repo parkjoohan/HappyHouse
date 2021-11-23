@@ -27,6 +27,13 @@
               </p></router-link
             ></b-nav-item
           >
+          <b-nav-item href="#"
+            ><router-link :to="{ name: 'News' }" class="link"
+              ><p class="h5 mb-2">
+                <b-icon icon="pen" font-scale="1"></b-icon> 뉴스
+              </p></router-link
+            ></b-nav-item
+          >
         </b-navbar-nav>
 
         <b-collapse id="nav-collapse" is-nav> </b-collapse>
@@ -103,6 +110,10 @@ export default {
       sessionStorage.removeItem("access-token");
       if (this.$route.path != "/") this.$router.push({ name: "Home" });
     },
+    // moveNews() {
+    //   this.$router.push("/news/list");
+    //   this.intercepter();
+    // },
   },
 };
 </script>

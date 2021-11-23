@@ -15,8 +15,12 @@ import NoticeUpdate from "@/components/notice/NoticeUpdate.vue";
 import NoticeDelete from "@/components/notice/NoticeDelete.vue";
 
 import House from "@/views/House.vue";
-
 import store from "@/store/index.js";
+// import NewsPage from "@/views/NewsPage.vue";
+
+import News from "@/views/News.vue";
+import NewsList from "@/components/news/List.vue";
+import NewsRead from "@/components/news/Read.vue";
 
 Vue.use(VueRouter);
 
@@ -109,6 +113,29 @@ const routes = [
     path: "/house",
     name: "House",
     component: House,
+  },
+  // {
+  //   path: "/news/list",
+  //   name: "NewsPage",
+  //   component: NewsPage,
+  // },
+  {
+    path: "/news",
+    name: "News",
+    component: News,
+    redirect: "/news/list",
+    children: [
+      {
+        path: "list",
+        name: "newslist",
+        component: NewsList,
+      },
+      {
+        path: "read",
+        name: "newsread",
+        component: NewsRead,
+      },
+    ],
   },
   {
     path: "*",
