@@ -6,12 +6,12 @@
       </video>
       <div class="text">
         <p style="color: white">
-          <b-icon icon="cloud-arrow-up"></b-icon> Board Service
-          <b-icon icon="cloud-download"></b-icon>
+          <b-icon icon="chat-right-quote"></b-icon> 오늘의 뉴스
+          <b-icon icon="chat-left-quote"></b-icon>
         </p>
       </div>
     </div>
-    <div id="news_title">오늘의 뉴스</div>
+    <br />
     <router-view></router-view>
   </div>
 </template>

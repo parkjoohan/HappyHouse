@@ -4,11 +4,8 @@
       <b-navbar-nav>
         <b-nav-form>
           <b-form-input v-model="word" class="mr-sm-2"></b-form-input>
-          <b-button
-            variant="outline-success"
-            class="my-2 my-sm-0"
-            @click="searchBtn"
-            >검색</b-button
+          <b-button variant="success" class="my-2 my-sm-0" @click="searchBtn"
+            ><b-icon icon="search"></b-icon> 검색</b-button
           >
         </b-nav-form>
       </b-navbar-nav>

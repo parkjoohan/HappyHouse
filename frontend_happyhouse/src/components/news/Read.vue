@@ -15,4 +15,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.table thead th {
+  color: #fff;
+  background-color: #3d3d3d;
+}
+</style>

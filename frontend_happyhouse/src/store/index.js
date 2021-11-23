@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import news from "./modules/news";
 import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
@@ -13,6 +14,7 @@ const store = new Vuex.Store({
     memberStore,
     noticeStore,
     houseStore,
+    news,
   },
   plugins: [
     createPersistedState({

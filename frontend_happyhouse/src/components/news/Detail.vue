@@ -2,23 +2,26 @@
   <div class="container">
     <b-card class="mx-auto" max-width="800">
       <b-card-text>
-        <p class="display-1 text--primary" v-html="news.title"></p>
+        <p class="display-4 text--primary" v-html="news.title"></p>
         <p>{{ news.pubDate }}</p>
         <div class="subtitle-1 text--primary" v-html="news.description"></div>
       </b-card-text>
-      <b-card-action>
-        <div>
-          <b-btn class="ma-2" color="success" @click="moveLink">
-            네이버 뉴스 본문
-          </b-btn>
-          <b-btn class="ma-2" color="info" @click="moveOriginaLlink">
-            언론사 본문
-          </b-btn>
-        </div>
-      </b-card-action>
+      <div>
+        <b-button type="button" class="m-1" variant="dark" @click="moveLink">
+          네이버 뉴스 본문
+        </b-button>
+        <b-button
+          type="button"
+          class="m-1"
+          variant="dark"
+          @click="moveOriginaLlink"
+        >
+          언론사 본문
+        </b-button>
+      </div>
     </b-card>
     <div class="text-right">
-      <b-btn class="ma-2" color="secondary" @click="moveList"> 목록 </b-btn>
+      <b-btn class="m-1" color="secondary" @click="moveList"> 목록 </b-btn>
     </div>
   </div>
 </template>
