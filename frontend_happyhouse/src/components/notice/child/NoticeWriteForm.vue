@@ -39,17 +39,40 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button
-          type="submit"
-          variant="primary"
-          class="m-1"
-          v-if="this.type === 'register'"
-          >글작성</b-button
-        >
-        <b-button type="submit" variant="primary" class="m-1" v-else
-          >글수정</b-button
-        >
-        <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
+        <b-container>
+          <b-row>
+            <b-col>
+              <div class="text-left">
+                <b-button
+                  type="submit"
+                  variant="primary"
+                  class="m-1"
+                  v-if="this.type === 'register'"
+                  >글작성</b-button
+                >
+                <b-button type="submit" variant="info" class="m-1" v-else
+                  ><b-icon icon="scissors"></b-icon> 글수정</b-button
+                >
+                <b-button type="reset" variant="danger" class="m-1"
+                  ><b-icon icon="arrow-clockwise"></b-icon> 초기화</b-button
+                >
+              </div>
+            </b-col>
+            <b-col>
+              <div class="text-right">
+                <b-button
+                  @click="goBack"
+                  variant="outline-secondary"
+                  class="m-1"
+                  ><b-icon icon="backspace"></b-icon> 뒤로가기</b-button
+                >
+                <b-button @click="goHome" variant="secondary" class="m-1"
+                  ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
+                >
+              </div>
+            </b-col>
+          </b-row>
+        </b-container>
       </b-form>
     </b-col>
   </b-row>
@@ -146,6 +169,12 @@ export default {
           console.log(error);
         }
       );
+    },
+    goBack() {
+      this.$router.go(-1);
+    },
+    goHome() {
+      this.$router.push("/");
     },
     moveList() {
       this.$router.push({ name: "NoticeList" });
