@@ -37,10 +37,13 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
               <h6 class="text-uppercase mb-4 font-weight-bold">Menu</h6>
               <p>
-                <a class="text-white">부동산</a>
+                <a class="text-white" href="/house">부동산</a>
               </p>
               <p>
-                <a class="text-white">자유게시판</a>
+                <a class="text-white" href="/notice">자유게시판</a>
+              </p>
+              <p>
+                <a class="text-white" href="/news">뉴스</a>
               </p>
             </div>
             <!-- Grid column -->

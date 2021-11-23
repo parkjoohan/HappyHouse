@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="container">
+  <div>
     <div class="bg">
       <video muted autoplay loop>
         <source src="@/assets/City.mp4" type="video/mp4" />
@@ -12,7 +12,9 @@
       </div>
     </div>
     <br />
-    <router-view></router-view>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 <script>
@@ -34,7 +36,7 @@ export default {
   margin: 0px auto;
   position: relative;
 }
-.video {
+video {
   width: 100%;
 }
 .text {
