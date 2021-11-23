@@ -4,18 +4,8 @@
 
 <mapper namespace="com.ssafy.happyhouse.model.mapper.CCTVMapper">
 
-	<select id="getCCTVInfo" parameterType="map" resultType="CCTVDto">
+	<select id="getCCTVInfo" parameterType="String" resultType="CCTVDto">
 		select * from seoul_cctv
-    	where dong = #{dong}
-      	order by gugun
-       	limit #{start}, #{spp}
+    	where dongCode = #{dongCode}
     </select>
-<!-- 	<select id="getCCTVVideoInfo" resultType="video"> -->
-<!-- 		 select * from cctvvideo -->
-<!--     </select> -->
-	<select id="getTotalCount" parameterType="map" resultType="int">
-		select count(*)
-		from seoul_cctv
-		where dong = #{dong}
-	</select>
 </mapper>
