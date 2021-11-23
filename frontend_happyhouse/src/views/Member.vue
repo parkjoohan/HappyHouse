@@ -1,8 +1,9 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <img src="@/assets/login.png" alt="" /><br />
-    <router-view></router-view>
-  </b-container>
+  <div>
+    <b-container class="bv-example-row mt-3 text-center">
+      <router-view></router-view>
+    </b-container>
+  </div>
 </template>
 
 <script>
@@ -19,5 +20,8 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(72, 190, 233, 0.3) 30%
   );
+}
+video {
+  width: 50%;
 }
 </style>

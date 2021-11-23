@@ -203,4 +203,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+video {
+  width: 50%;
+}
+</style>

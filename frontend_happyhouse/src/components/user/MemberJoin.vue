@@ -1,10 +1,11 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert variant="secondary" show><h3>회원가입</h3></b-alert>
-      </b-col>
-    </b-row>
+    <video muted autoplay loop>
+      <source src="@/assets/signup.mp4" type="video/mp4" />
+    </video>
+    <row>
+      <b-alert show><h3>글보기</h3></b-alert>
+    </row>
     <member-join-form type="register" />
   </b-container>
 </template>
@@ -20,4 +21,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+video {
+  width: 50%;
+}
+.alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+  width: 60%;
+
+  /* align-content: center; */
+}
+</style>
