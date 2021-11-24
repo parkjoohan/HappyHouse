@@ -40,17 +40,17 @@
                 variant="success"
                 class="m-1"
                 @click="confirm"
-                ><b-icon icon="key"></b-icon> 로그인</b-button
+                ><b-icon icon="key"></b-icon><b> 로그인</b></b-button
               >
               <b-button
                 type="button"
                 variant="primary"
                 class="m-1"
                 @click="movePage"
-                ><b-icon icon="person-plus"></b-icon> 회원가입</b-button
+                ><b-icon icon="person-plus"></b-icon><b> 회원가입</b></b-button
               >
               <b-button @click="goHome" variant="secondary" class="m-1"
-                ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
+                ><b-icon icon="box-arrow-left"></b-icon><b> 홈으로</b></b-button
               >
             </b-form>
           </b-card>
