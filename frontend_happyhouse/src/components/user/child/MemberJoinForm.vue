@@ -204,7 +204,8 @@ export default {
 </script>
 
 <style>
-video {
-  width: 50%;
+.text-center {
+  margin: 0px auto;
+  position: relative;
 }
 </style>
