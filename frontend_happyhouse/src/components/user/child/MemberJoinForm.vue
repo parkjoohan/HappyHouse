@@ -196,7 +196,6 @@ export default {
     },
     goLogin() {
       this.$router.push("/user/singin");
-      [3];
     },
     address_kakao() {
       new window.daum.Postcode({
