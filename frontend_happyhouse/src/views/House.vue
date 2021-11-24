@@ -27,7 +27,10 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="bv-example-row mt-5 text-center">
+    <b-container
+      class="bv-example-row mt-5 text-center"
+      style="margin-top: 37rem !important"
+    >
       <b-row class="mb-2 text-center">
         <b-col
           ><h2>{{ dongName }}</h2></b-col
@@ -105,7 +108,7 @@ export default {
 
       //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
       //링크 > 실직적 예제 > 인증 루프코딩
-      const ACCESS_TOKEN = "ebfd8fcc-8306-49a0-a9bb-b5959564836f"; //4시간 마다 갱신
+      const ACCESS_TOKEN = "82f154f0-6752-4025-b8a8-4599cf027e0c"; //4시간 마다 갱신
 
       let pplSummary = await axios.get(POPULATION_URL, {
         params: {
@@ -225,7 +228,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .underline-orange {
   display: inline-block;
   background: linear-gradient(
@@ -255,5 +258,8 @@ video {
   text-align: center;
   font-size: 30px;
   color: #ffffff;
+}
+.bv-example-row mt-3 {
+  height: 500px;
 }
 </style>

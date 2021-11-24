@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-1">
     <b-navbar>
       <b-navbar-nav>
         <b-nav-form>
@@ -123,5 +123,13 @@ export default {
   border-top: 1px solid silver;
   border-bottom: 1px solid silver;
   margin-bottom: 50px;
+}
+.container-1,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  max-width: 1140px;
+  height: 700px;
 }
 </style>
