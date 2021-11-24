@@ -29,7 +29,7 @@
     </b-container>
     <b-container
       class="bv-example-row mt-5 text-center"
-      style="margin-top: 43rem !important"
+      style="margin-top: 42rem !important"
     >
       <b-row class="mb-2 text-center">
         <b-col
