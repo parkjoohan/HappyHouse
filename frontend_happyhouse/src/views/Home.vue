@@ -5,9 +5,11 @@
         <source src="@/assets/City.mp4" type="video/mp4" />
       </video>
       <div class="text">
-        <p style="font-size: 40px">
-          Nothing is more relaxing than chilling at home.<br />
-          There is nothing like staying at home for real comfort.
+        <p style="font-size: 40px; font-family: '함초롬돋움'">
+          <b
+            >Nothing is more relaxing than chilling at home.<br />
+            There is nothing like staying at home for real comfort.</b
+          >
         </p>
         <p style="font-size: 30px">- Jane Austen -</p>
       </div>
@@ -19,15 +21,25 @@
         <p>hello woreld</p> -->
         <img src="@/assets/seoul.jpg" width="100%" alt="" />
       </section>
-      <section class="item item-b" width="30%" align="center">
-        <h1>서울</h1>
+      <section
+        class="item item-b"
+        width="30%"
+        align="center"
+        style="font-family: '함초롬돋움'"
+      >
+        <h1><b>서울</b></h1>
         <h4>I · SEOUL · U</h4>
       </section>
     </div>
 
     <div class="container" style="height: 50%">
-      <section class="item item-b" width="30%" align="center">
-        <h1>광주</h1>
+      <section
+        class="item item-b"
+        width="30%"
+        align="center"
+        style="font-family: '함초롬돋움'"
+      >
+        <h1><b>광주</b></h1>
         <h4>SSAFY의 중심지!!</h4>
       </section>
       <section class="item item-a">
@@ -43,15 +55,25 @@
         <p>hello woreld</p> -->
         <img src="@/assets/pusan.jpg" width="100%" alt="" />
       </section>
-      <section class="item item-b" width="30%" align="center">
-        <h1>부산</h1>
+      <section
+        class="item item-b"
+        width="30%"
+        align="center"
+        style="font-family: '함초롬돋움'"
+      >
+        <h1><b>부산</b></h1>
         <h4>바다와 먹거리의 중심!</h4>
       </section>
     </div>
 
     <div class="container" style="height: 50%">
-      <section class="item item-b" width="30%" align="center">
-        <h1>대전</h1>
+      <section
+        class="item item-b"
+        width="30%"
+        align="center"
+        style="font-family: '함초롬돋움'"
+      >
+        <h1><b>대전</b></h1>
         <h4>과학의 도시, 미래의 도시!!</h4>
       </section>
       <section class="item item-a">
@@ -67,8 +89,13 @@
         <p>hello woreld</p> -->
         <img src="@/assets/gumi.jpg" width="100%" alt="" />
       </section>
-      <section class="item item-b" width="30%" align="center">
-        <h1>구미</h1>
+      <section
+        class="item item-b"
+        width="30%"
+        align="center"
+        style="font-family: '함초롬돋움'"
+      >
+        <h1><b>구미</b></h1>
         <h4>당신(시민)과 함께라서 신나는 스마트 구미</h4>
       </section>
     </div>

@@ -8,7 +8,9 @@
     <div>
       <b-container class="bv-example-row mt-3">
         <row>
-          <b-alert show><h3>회원가입</h3></b-alert>
+          <b-alert show
+            ><h3><b>회원가입</b></h3></b-alert
+          >
         </row>
         <member-join-form type="register" />
       </b-container>
@@ -38,16 +40,8 @@ export default {
   color: #383d41;
   background-color: #e2e3e5;
   border-color: #d6d8db;
-  width: 59%;
+  max-width: 52%;
   margin: 0px auto;
   position: relative;
-}
-.container,
-.container-sm,
-.container-md,
-.container-lg,
-.container-xl {
-  max-width: 1140px;
-  height: 1000px;
 }
 </style>

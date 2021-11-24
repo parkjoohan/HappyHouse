@@ -4,9 +4,9 @@
       <video muted autoplay loop>
         <source src="@/assets/City.mp4" type="video/mp4" />
       </video>
-      <div class="text">
+      <div class="text" style="font-family: '함초롬돋움'">
         <p style="color: white">
-          <b-icon icon="chat-right-quote"></b-icon> 오늘의 뉴스
+          <b-icon icon="chat-right-quote"></b-icon><b> 오늘의 뉴스</b>
           <b-icon icon="chat-left-quote"></b-icon>
         </p>
       </div>

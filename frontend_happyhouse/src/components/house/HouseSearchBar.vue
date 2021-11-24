@@ -13,9 +13,8 @@
           v-model="month"
           :options="months"
           @change="searchApt"
-        ></b-form-select>
-      </b-col>
-      {{ year }}년 {{ month }}월 선택
+        ></b-form-select> </b-col
+      ><b> {{ year }}년 {{ month }}월 선택</b>
       <b-col cols="8"> </b-col>
     </b-row>
     <b-row class="mt-2 mb-4 text-center">

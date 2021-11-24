@@ -4,9 +4,9 @@
       <video muted autoplay loop>
         <source src="@/assets/City.mp4" type="video/mp4" />
       </video>
-      <div class="text">
+      <div class="text" style="font-family: '함초롬돋움'">
         <p style="color: white">
-          <b-icon icon="building"></b-icon> 부동산 서비스
+          <b-icon icon="building"></b-icon><b> 부동산 서비스</b>
           <b-icon icon="house-fill"></b-icon>
         </p>
       </div>
@@ -38,15 +38,15 @@
       </b-row>
       <b-row class="mt-4 mb-2 text-center">
         <b-col cols="4">
-          <h4>거주인구 요약정보</h4>
+          <h4><b>거주인구 요약정보</b></h4>
           <pie-chart1 :chart-data="chartData1"></pie-chart1>
         </b-col>
         <b-col cols="4">
-          <h4>거처종류 요약정보</h4>
+          <h4><b>거처종류 요약정보</b></h4>
           <pie-chart2 :chart-data="chartData2"></pie-chart2>
         </b-col>
         <b-col cols="4">
-          <h4>점유형태 요약정보</h4>
+          <h4><b>점유형태 요약정보</b></h4>
           <pie-chart3 :chart-data="chartData3"></pie-chart3>
         </b-col>
       </b-row>
