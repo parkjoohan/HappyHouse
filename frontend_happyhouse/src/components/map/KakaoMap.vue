@@ -1,11 +1,17 @@
 <template>
   <div>
     <!-- 카카오맵 Vue -->
-    <div class="map_wrap">
+    <div class="map_wrap" style="relative">
       <div
         id="map"
         class="map"
-        style="width: 100%; height: 100%; position: relative; overflow: hidden"
+        style="
+          width: 130%;
+          height: 100%;
+          position: relatvie;
+          left: -15%
+          overflow: hidden;
+        "
       ></div>
       <div id="menu_wrap" class="bg_white">
         <input type="text" id="keyword" v-model="keyword" />
@@ -91,7 +97,7 @@ export default {
     initMap() {
       const container = document.getElementById("map");
       const options = {
-        center: new kakao.maps.LatLng(35.16019989313708, 126.85155252952333),
+        center: new kakao.maps.LatLng(35.20429227151731, 126.80715528202201),
         level: 8,
       };
       map = new kakao.maps.Map(container, options);
@@ -523,7 +529,7 @@ export default {
   left: 0;
   bottom: 0;
   width: 250px;
-  margin: 10px 0 30px 10px;
+  margin: 10px 0 30px -150px;
   padding: 5px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.7);
