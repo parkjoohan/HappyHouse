@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="height: 50%">
       <section class="item item-a">
         <!-- <h1>Section a</h1>
         <p>hello woreld</p> -->
@@ -25,7 +25,7 @@
       </section>
     </div>
 
-    <div class="container">
+    <div class="container" style="height: 50%">
       <section class="item item-b" width="30%" align="center">
         <h1>광주</h1>
         <h4>SSAFY의 중심지!!</h4>
@@ -37,7 +37,7 @@
       </section>
     </div>
 
-    <div class="container">
+    <div class="container" style="height: 50%">
       <section class="item item-a">
         <!-- <h1>Section a</h1>
         <p>hello woreld</p> -->
@@ -49,7 +49,7 @@
       </section>
     </div>
 
-    <div class="container">
+    <div class="container" style="height: 50%">
       <section class="item item-b" width="30%" align="center">
         <h1>대전</h1>
         <h4>과학의 도시, 미래의 도시!!</h4>
@@ -61,7 +61,7 @@
       </section>
     </div>
 
-    <div class="container">
+    <div class="container" style="height: 50%">
       <section class="item item-a">
         <!-- <h1>Section a</h1>
         <p>hello woreld</p> -->
