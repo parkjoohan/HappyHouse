@@ -3,8 +3,8 @@
     <b-col></b-col>
     <b-col cols="8">
       <b-card
-        class="text-center mt-3"
-        style="max-width: 40rem; max-height: 36rem"
+        class="text-center mt-2"
+        style="max-width: 40rem; max-height: 38.5rem"
         align="left"
       >
         <b-form class="text-left" @submit="onSubmit" @reset="onReset">

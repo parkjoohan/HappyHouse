@@ -38,16 +38,8 @@ export default {
   color: #383d41;
   background-color: #e2e3e5;
   border-color: #d6d8db;
-  width: 59%;
+  max-width: 52%;
   margin: 0px auto;
   position: relative;
-}
-.container,
-.container-sm,
-.container-md,
-.container-lg,
-.container-xl {
-  max-width: 1140px;
-  height: 1000px;
 }
 </style>
