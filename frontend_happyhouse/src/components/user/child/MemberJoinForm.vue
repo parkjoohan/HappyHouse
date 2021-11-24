@@ -92,19 +92,25 @@
               placeholder="010-xxx-xxxx"
             ></b-form-input>
           </b-form-group>
-
-          <b-button type="submit" variant="primary" class="m-1"
-            ><b-icon icon="person-plus"></b-icon> 회원가입
-          </b-button>
-          <b-button type="reset" variant="danger" class="m-1"
-            ><b-icon icon="arrow-clockwise"></b-icon> 초기화</b-button
-          >
-          <b-button @click="goHome" variant="secondary" class="m-1"
-            ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
-          ><b-h3>&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;회원이라면</b-h3>
-          <b-button @click="goLogin" variant="success" class="m-1"
-            ><b-icon icon="box-arrow-left"></b-icon> 로그인</b-button
-          >
+          <b-row class="mb-2">
+            <b-col class="text-left col-sm-7">
+              <b-button type="submit" variant="primary" class="m-1"
+                ><b-icon icon="person-plus"></b-icon> 회원가입
+              </b-button>
+              <b-button type="reset" variant="danger" class="m-1"
+                ><b-icon icon="arrow-clockwise"></b-icon> 초기화</b-button
+              >
+              <b-button @click="goHome" variant="secondary" class="m-1"
+                ><b-icon icon="box-arrow-left"></b-icon> 홈으로</b-button
+              >
+            </b-col>
+            <b-col class="text-right col-sm-5">
+              <b-h3>회원이라면 </b-h3>
+              <b-button @click="goLogin" variant="success" class="m-1"
+                ><b-icon icon="box-arrow-left"></b-icon> 로그인</b-button
+              >
+            </b-col>
+          </b-row>
         </b-form>
       </b-card>
     </b-col>
