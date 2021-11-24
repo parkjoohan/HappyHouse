@@ -2,13 +2,15 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show><h3>글보기</h3></b-alert>
+        <b-alert show
+          ><h3><b>글보기</b></h3></b-alert
+        >
       </b-col>
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-left">
         <b-button variant="secondary" @click="listArticle"
-          ><b-icon icon="clipboard"></b-icon> 목록</b-button
+          ><b-icon icon="clipboard"></b-icon><b> 목록</b></b-button
         >
       </b-col>
       <b-col
@@ -16,10 +18,10 @@
         v-if="this.userInfo.userId === this.article.userId"
       >
         <b-button variant="info" @click="moveModifyArticle" class="m-1">
-          <b-icon icon="scissors"></b-icon> 글수정
+          <b-icon icon="scissors"></b-icon><b> 글수정</b>
         </b-button>
         <b-button class="m-1" variant="danger" @click="deleteArticle"
-          ><b-icon icon="trash"></b-icon> 글삭제</b-button
+          ><b-icon icon="trash"></b-icon><b> 글삭제</b></b-button
         >
       </b-col>
     </b-row>

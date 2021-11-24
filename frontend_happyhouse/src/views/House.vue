@@ -33,7 +33,9 @@
     >
       <b-row class="mb-2 text-center">
         <b-col
-          ><h2>{{ dongName }}</h2></b-col
+          ><h2>
+            <b>{{ dongName }}</b>
+          </h2></b-col
         >
       </b-row>
       <b-row class="mt-4 mb-2 text-center">

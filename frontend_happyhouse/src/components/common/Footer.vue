@@ -102,9 +102,9 @@
             <div class="col-md-7 col-lg-8 text-center text-md-start">
               <!-- Copyright -->
               <div class="p-3">
-                © 2021 Copyright: 서은민, 박주한<br />
+                <b> © 2021 Copyright: 서은민, 박주한</b><br />
                 <a class="text-white" href="https://www.ssafy.com/"
-                  >www.ssafy.com</a
+                  ><b>www.ssafy.com</b></a
                 >
               </div>
               <!-- Copyright -->

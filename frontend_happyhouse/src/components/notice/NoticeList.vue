@@ -37,13 +37,13 @@
             variant="outline-primary"
             class="my-2 my-sm-0"
             @click="searchBtn"
-            ><b-icon icon="search"></b-icon> 검색</b-button
+            ><b-icon icon="search"></b-icon><b> 검색</b></b-button
           >
         </b-nav-form>
       </b-col>
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()"
-          ><b-icon icon="vector-pen"></b-icon> 글 쓰기</b-button
+          ><b-icon icon="vector-pen"></b-icon><b> 글 쓰기</b></b-button
         >
       </b-col>
     </b-row>

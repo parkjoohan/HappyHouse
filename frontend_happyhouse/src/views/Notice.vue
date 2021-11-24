@@ -4,9 +4,9 @@
       <video muted autoplay loop>
         <source src="@/assets/City.mp4" type="video/mp4" />
       </video>
-      <div class="text">
+      <div class="text" style="font-family: '함초롬돋움'">
         <p style="color: white">
-          <b-icon icon="cloud-arrow-up"></b-icon> Board Service
+          <b-icon icon="cloud-arrow-up"></b-icon><b> Board Service</b>
           <b-icon icon="cloud-download"></b-icon>
         </p>
       </div>
