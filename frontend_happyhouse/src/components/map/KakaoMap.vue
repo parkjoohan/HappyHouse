@@ -19,23 +19,25 @@
         <ul id="placesList"></ul>
         <div id="pagination"></div>
       </div>
+      <br />
       <p>
         <input
           type="checkbox"
           id="chkUseDistrict"
           @click="setOverlayMapTypeId()"
         />
-        지적편집도 정보 보기
+        <b> 지적편집도 정보 보기&emsp;&emsp; </b>
         <input type="checkbox" id="chkTerrain" @click="setOverlayMapTypeId()" />
-        지형정보 보기
+        <b> 지형정보 보기&emsp;&emsp; </b>
         <input type="checkbox" id="chkTraffic" @click="setOverlayMapTypeId()" />
-        교통정보 보기
+        <b> 교통정보 보기&emsp;&emsp; </b>
         <input type="checkbox" id="chkBicycle" @click="setOverlayMapTypeId()" />
-        자전거도로 정보 보기
+        <b> 자전거도로 정보 보기&emsp;&emsp; </b>
         <input type="checkbox" id="chkCctv" @click="setOverlayMapTypeId()" />
-        cctv 정보 보기
+        <b> CCTV 정보 보기 </b>
       </p>
     </div>
+    <br />
   </div>
 </template>
 
