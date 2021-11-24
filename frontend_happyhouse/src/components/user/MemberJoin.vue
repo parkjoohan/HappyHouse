@@ -8,7 +8,9 @@
     <div>
       <b-container class="bv-example-row mt-3">
         <row>
-          <b-alert show><h3>회원가입</h3></b-alert>
+          <b-alert show
+            ><h3><b>회원가입</b></h3></b-alert
+          >
         </row>
         <member-join-form type="register" />
       </b-container>

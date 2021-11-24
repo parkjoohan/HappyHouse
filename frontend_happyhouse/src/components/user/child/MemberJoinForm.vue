@@ -109,7 +109,7 @@
               >
             </b-col>
             <b-col class="text-right col-sm-5">
-              <b-h3>회원이라면 </b-h3>
+              <b-h3><b>회원이라면 </b></b-h3>
               <b-button @click="goLogin" variant="success" class="m-1"
                 ><b-icon icon="box-arrow-left"></b-icon> 로그인</b-button
               >
