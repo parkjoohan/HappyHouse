@@ -105,7 +105,7 @@ export default {
 
       //https://sgis.kostat.go.kr/developer/html/develop/dvp.html
       //링크 > 실직적 예제 > 인증 루프코딩
-      const ACCESS_TOKEN = "ebfd8fcc-8306-49a0-a9bb-b5959564836f"; //4시간 마다 갱신
+      const ACCESS_TOKEN = "82f154f0-6752-4025-b8a8-4599cf027e0c"; //4시간 마다 갱신
 
       let pplSummary = await axios.get(POPULATION_URL, {
         params: {

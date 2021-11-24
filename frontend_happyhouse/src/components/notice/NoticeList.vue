@@ -8,7 +8,7 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col>
+      <b-col id="여기야">
         <b-table
           id="noticeTable"
           class="text-center"
@@ -100,5 +100,8 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+#여기야 {
+  height: 600px;
 }
 </style>
