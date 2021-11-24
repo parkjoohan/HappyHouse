@@ -88,19 +88,19 @@
           </b-form-group>
           <div v-if="this.viewMode">
             <b-button variant="primary" class="m-1" @click="changeMode"
-              >수정하기
+              ><b-icon icon="scissors"></b-icon><b> 수정하기</b>
             </b-button>
-            <b-button variant="danger" class="m-1" @click="deleteMember"
-              >삭제
-            </b-button>
+            <b-button @click="goBack" variant="outline-secondary" class="m-1"
+              ><b-icon icon="backspace"></b-icon><b> 뒤로가기</b></b-button
+            >
           </div>
           <div v-else>
-            <b-button variant="primary" class="m-1" @click="modifyMember"
-              >확인
+            <b-button variant="primary" class="m-1" @click="changeMode"
+              ><b-icon icon="scissors"></b-icon><b> 수정하기</b>
             </b-button>
-            <b-button variant="danger" class="m-1" @click="changeMode"
-              >취소
-            </b-button>
+            <b-button @click="goBack" variant="outline-secondary" class="m-1"
+              ><b-icon icon="backspace"></b-icon><b> 뒤로가기</b></b-button
+            >
           </div>
         </b-form>
       </b-card>
@@ -184,6 +184,9 @@ export default {
     },
     moveHome() {
       this.$router.push({ name: "Home" });
+    },
+    goBack() {
+      this.$router.go(-1);
     },
   },
 };

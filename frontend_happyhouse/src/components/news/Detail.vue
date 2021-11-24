@@ -8,7 +8,7 @@
       </b-card-text>
       <div>
         <b-button type="button" class="m-1" variant="dark" @click="moveLink">
-          <b-icon icon="newspaper"></b-icon> 네이버 뉴스 본문
+          <b-icon icon="newspaper"></b-icon><b> 네이버 뉴스 본문</b>
         </b-button>
         <b-button
           type="button"
@@ -16,13 +16,13 @@
           variant="dark"
           @click="moveOriginaLlink"
         >
-          <b-icon icon="newspaper"></b-icon> 언론사 본문
+          <b-icon icon="newspaper"></b-icon><b> 언론사 본문</b>
         </b-button>
       </div>
     </b-card>
     <div class="text-right">
       <b-btn class="m-1" color="secondary" @click="moveList"
-        ><b-icon icon="clipboard"></b-icon> 목록
+        ><b-icon icon="clipboard"></b-icon><b> 목록</b>
       </b-btn>
     </div>
   </div>

@@ -5,7 +5,7 @@
         <b-nav-form>
           <b-form-input v-model="word" class="mr-sm-2"></b-form-input>
           <b-button variant="success" class="my-2 my-sm-0" @click="searchBtn"
-            ><b-icon icon="search"></b-icon> 검색</b-button
+            ><b-icon icon="search"></b-icon><b> 검색</b></b-button
           >
         </b-nav-form>
       </b-navbar-nav>
