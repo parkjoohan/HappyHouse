@@ -24,4 +24,12 @@ export default {
 video {
   width: 50%;
 }
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  max-width: 1140px;
+  height: 1000px;
+}
 </style>
