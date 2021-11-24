@@ -8,7 +8,7 @@
     <div>
       <b-container class="bv-example-row mt-3">
         <row>
-          <b-alert show><h3>글보기</h3></b-alert>
+          <b-alert show><h3>회원가입</h3></b-alert>
         </row>
         <member-join-form type="register" />
       </b-container>
@@ -38,7 +38,7 @@ export default {
   color: #383d41;
   background-color: #e2e3e5;
   border-color: #d6d8db;
-  width: 65%;
+  width: 59%;
   margin: 0px auto;
   position: relative;
 }
