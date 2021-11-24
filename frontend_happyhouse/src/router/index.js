@@ -84,7 +84,7 @@ const routes = [
         component: NoticeList,
       },
       {
-        path: "read",
+        path: "read/:no",
         name: "NoticeView",
         beforeEnter: onlyAuthUser,
         component: NoticeView,
