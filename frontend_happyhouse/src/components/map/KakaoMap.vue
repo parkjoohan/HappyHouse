@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 카카오맵 Vue -->
-    <div class="map_wrap" style="relative">
+    <div class="map_wrap">
       <div
         id="map"
         class="map"
@@ -9,7 +9,7 @@
           width: 130%;
           height: 100%;
           position: relatvie;
-          left: -15%
+          left: -16%
           overflow: hidden;
         "
       ></div>
@@ -98,7 +98,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(35.20429227151731, 126.80715528202201),
-        level: 8,
+        level: 7,
       };
       map = new kakao.maps.Map(container, options);
 
@@ -529,7 +529,7 @@ export default {
   left: 0;
   bottom: 0;
   width: 250px;
-  margin: 10px 0 30px -150px;
+  margin: 10px 0 30px -160px;
   padding: 5px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.7);

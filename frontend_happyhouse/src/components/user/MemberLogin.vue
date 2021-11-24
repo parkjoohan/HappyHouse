@@ -9,7 +9,7 @@
         <b-col cols="8" align="center">
           <b-card
             class="text-center mt-3"
-            style="max-width: 30rem"
+            style="max-width: 30rem; max-height: 20rem"
             align="left"
           >
             <b-form class="text-left">

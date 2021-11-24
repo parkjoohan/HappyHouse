@@ -27,7 +27,10 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="bv-example-row mt-5 text-center">
+    <b-container
+      class="bv-example-row mt-5 text-center"
+      style="margin-top: 37rem !important"
+    >
       <b-row class="mb-2 text-center">
         <b-col
           ><h2>{{ dongName }}</h2></b-col
@@ -225,7 +228,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .underline-orange {
   display: inline-block;
   background: linear-gradient(
@@ -255,5 +258,8 @@ video {
   text-align: center;
   font-size: 30px;
   color: #ffffff;
+}
+.bv-example-row mt-3 {
+  height: 500px;
 }
 </style>

@@ -20,4 +20,12 @@ export default {
   color: #fff;
   background-color: #3d3d3d;
 }
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+  max-width: 1140px;
+  height: 700px;
+}
 </style>

@@ -11,7 +11,7 @@
         </p>
       </div>
     </div>
-    <b-container class="bv-example-row mt-3 text-center">
+    <b-container class="bv-example-row mt-3 text-center height:600px;">
       <router-view></router-view>
     </b-container>
   </div>
