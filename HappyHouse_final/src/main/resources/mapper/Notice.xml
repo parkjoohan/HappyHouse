@@ -30,51 +30,17 @@
 	</delete>
 
 	<!-- 글 목록 -->
-	<select id="listNotice" resultType="NoticeDto">
-		select n.articleno, n.userid, n.subject, n.content, n.regtime, m.username
-		from notice n, hh_member m
-		where n.userid = m.userid
-		order by n.regtime desc
-	</select>
-	
-	<!-- 
-	
-	<select id="getTotalCount" parameterType="map" resultType="int">
-		select count(articleno)
+	<select id="listNotice" parameterType="map" resultType="NoticeDto">
+		select articleno, userid, subject, content, regtime
 		from notice
-		<where>
-			<include refid="search"></include>
-		</where>
-	</select>
-	
-	
-	<resultMap type="NoticeDto" id="articleList">
-		<result column="articleno" property="articleNo"/>
-		<result column="userid" property="userId"/>
-		<result column="subject" property="subject"/>
-		<result column="content" property="content"/>
-		<result column="regtime" property="regTime"/>
-	</resultMap>
-	
-	<sql id="search">
 		<if test="word != null and word != ''">
-			<if test="key == subject">
-				and subject like concat('%', #{word}, '%')
+			<if test="key == 'subject'">
+				where subject like concat('%', #{word}, '%')
 			</if>
-			<if test="key != subject">
-				and ${key} = #{word}
+			<if test="key != 'subject'">
+				where ${key} = #{word}
 			</if>
 		</if>
-	</sql>
-	
-	<select id="listArticle" parameterType="map" resultMap="articleList">
-		select n.articleno, n.userid, n.subject, n.content, n.regtime, m.username
-		from notice n, hh_member m
-		where n.userid = m.userid
- 		<include refid="search"></include>
-		order by n.articleno desc
-		limit #{start}, #{spp}
+		order by regtime desc
 	</select>
-	 -->
-
 </mapper>

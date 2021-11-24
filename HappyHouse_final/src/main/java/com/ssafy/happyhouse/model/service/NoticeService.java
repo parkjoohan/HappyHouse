@@ -4,16 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.happyhouse.model.NoticeDto;
-//import com.ssafy.util.PageNavigation;
+import com.ssafy.happyhouse.model.NoticeParameterDto;
 
 public interface NoticeService {
 
 	boolean registerNotice(NoticeDto noticeDto);
-	List<NoticeDto> listNotice();
+	List<NoticeDto> listNotice(NoticeParameterDto noticeParameterDto);
 	NoticeDto getNotice(int noticeNo);
 	boolean modifyNotice(NoticeDto noticeDto);
 	boolean deleteNotice(int noticeNo);
-
-	//List<NoticeDto> listNotice(Map<String, String> map);
-	//PageNavigation makePageNavigation(Map<String, String> map) throws Exception;
 }

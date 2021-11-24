@@ -46,8 +46,10 @@ import com.ssafy.happyhouse.model.NoticeDto;
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.NoticeService;
 //import com.ssafy.util.PageNavigation;
+import com.ssafy.happyhouse.model.NoticeParameterDto;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
@@ -61,28 +63,12 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-//	@GetMapping("/list")
-//	public ModelAndView list(@RequestParam Map<String, String> map) throws Exception {
-//		ModelAndView mav = new ModelAndView();
-//		System.out.println(map);
-//		String spp = map.get("spp"); // size per page (페이지당 글갯수)
-//		map.put("spp", spp != null ? spp : "5");
-//		List<NoticeDto> list = noticeService.listArticle(map);
-//		System.out.println(list);
-//		PageNavigation pageNavigation = noticeService.makePageNavigation(map);
-//		mav.addObject("articles", list);
-//		mav.addObject("navigation", pageNavigation);
-//		mav.addObject("key", map.get("key"));
-//		mav.addObject("word", map.get("word"));
-//		mav.setViewName("notice/noticeboard");
-//		return mav;
-//	}
-	
 	@ApiOperation(value = "모든 게시글의 정보를 반환", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<NoticeDto>> listNotice(){
+	public ResponseEntity<List<NoticeDto>> listNotice(@ApiParam(value = "게시글을 얻기위한 부가정보.", required = true)NoticeParameterDto noticeParameterDto){
 		logger.debug("listNotice - 호출");
-		return new ResponseEntity<>(noticeService.listNotice(), HttpStatus.OK);
+		System.out.println(noticeParameterDto);
+		return new ResponseEntity<>(noticeService.listNotice(noticeParameterDto), HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "새로운 게시글 등록", notes = "DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
