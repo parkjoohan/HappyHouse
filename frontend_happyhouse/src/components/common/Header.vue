@@ -16,21 +16,21 @@
           <b-nav-item href="#"
             ><router-link :to="{ name: 'House' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="building" font-scale="1"></b-icon> 부동산
+                <b-icon icon="building" font-scale="1"></b-icon><b> 부동산</b>
               </p>
             </router-link></b-nav-item
           >
           <b-nav-item href="#"
             ><router-link :to="{ name: 'Notice' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="pen" font-scale="1"></b-icon> 게시판
+                <b-icon icon="pen" font-scale="1"></b-icon><b> 게시판</b>
               </p></router-link
             ></b-nav-item
           >
           <b-nav-item href="#"
             ><router-link :to="{ name: 'News' }" class="link"
               ><p class="h5 mb-2">
-                <b-icon icon="newspaper" font-scale="1"></b-icon> 뉴스
+                <b-icon icon="newspaper" font-scale="1"></b-icon><b> 뉴스</b>
               </p></router-link
             ></b-nav-item
           >
@@ -59,7 +59,7 @@
           <b-nav-item
             class="link align-self-center"
             @click.prevent="onClickLogout"
-            ><h5>로그아웃</h5></b-nav-item
+            ><h5><b>로그아웃</b></h5></b-nav-item
           >
         </b-navbar-nav>
         <!--로그인 전-->
@@ -73,15 +73,14 @@
             <b-dropdown-item href="#"
               ><router-link :to="{ name: 'SignUp' }" class="link"
                 ><p class="h5 mb-2">
-                  <b-icon icon="person-plus"></b-icon>
-                  회원가입
+                  <b-icon icon="person-plus"></b-icon><b> 회원가입</b>
                 </p></router-link
               ></b-dropdown-item
             >
             <b-dropdown-item href="#"
               ><router-link :to="{ name: 'SignIn' }" class="link"
                 ><p class="h5 mb-2">
-                  <b-icon icon="key"></b-icon> 로그인
+                  <b-icon icon="key"></b-icon><b> 로그인</b>
                 </p></router-link
               ></b-dropdown-item
             >

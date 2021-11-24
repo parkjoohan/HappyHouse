@@ -2,7 +2,9 @@
   <b-container v-if="house" class="bv-example-row">
     <b-row>
       <b-col>
-        <b-alert show variant="primary">{{ house.아파트 }} </b-alert>
+        <b-alert show variant="primary"
+          ><b>{{ house.아파트 }} </b></b-alert
+        >
       </b-col>
     </b-row>
     <b-row class="mb-2 mt-1">
