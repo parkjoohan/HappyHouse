@@ -3,7 +3,7 @@
     <b-row class="mb-1">
       <b-col class="text-right">
         <b-button variant="outline-primary" @click="moveWrite()"
-          ><b-icon icon="vector-pen"></b-icon> 글쓰기</b-button
+          ><b-icon icon="vector-pen"></b-icon> 글 쓰기</b-button
         >
       </b-col>
     </b-row>
