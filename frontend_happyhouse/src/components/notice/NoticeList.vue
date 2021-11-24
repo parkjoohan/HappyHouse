@@ -65,7 +65,7 @@ export default {
     listArticle(
       (response) => {
         this.noticeList = response.data;
-        console.log(this.noticeList);
+        //console.log(this.noticeList);
       },
       (error) => {
         console.log(error);
