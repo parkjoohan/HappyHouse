@@ -14,4 +14,10 @@
 			<item value="C:\SSAFY_Happyhouse_Final\HappyHouse_final"/>
 		</list>
 	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="com.umlet.plugin.wizards.NewWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Other"/>
+		</list>
+	</section>
 </section>
