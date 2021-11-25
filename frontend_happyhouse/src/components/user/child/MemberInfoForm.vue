@@ -93,7 +93,7 @@
                   ><b-icon icon="scissors"></b-icon><b> 수정하기</b>
                 </b-button>
                 <b-button class="m-1" variant="danger" @click="deleteMember"
-                  ><b-icon icon="trash"></b-icon><b> 회원삭제</b></b-button
+                  ><b-icon icon="trash"></b-icon><b> 회원탈퇴</b></b-button
                 >
               </b-col>
               <b-col class="text-right">
