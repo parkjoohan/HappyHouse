@@ -51,6 +51,7 @@ import { getArticle, deleteArticle } from "@/api/notice";
 const memberStore = "memberStore";
 
 export default {
+  name: "NoticeView",
   data() {
     return {
       article: {},

@@ -294,7 +294,9 @@ export default {
                   customOverlay.setMap(map);
                 });
                 kakao.maps.event.addListener(map, "click", function () {
-                  customOverlay.setMap(null);
+                  if (customOverlay) {
+                    customOverlay.setMap(null);
+                  }
                 });
               })(marker, value);
 
