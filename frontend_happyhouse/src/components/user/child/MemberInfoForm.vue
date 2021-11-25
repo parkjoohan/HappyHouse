@@ -87,12 +87,24 @@
             ></b-form-input>
           </b-form-group>
           <div v-if="this.viewMode">
-            <b-button variant="primary" class="m-1" @click="changeMode"
-              ><b-icon icon="scissors"></b-icon><b> 수정하기</b>
-            </b-button>
-            <b-button @click="goBack" variant="outline-secondary" class="m-1"
-              ><b-icon icon="backspace"></b-icon><b> 뒤로가기</b></b-button
-            >
+            <b-row>
+              <b-col class="text-left">
+                <b-button variant="primary" class="m-1" @click="changeMode"
+                  ><b-icon icon="scissors"></b-icon><b> 수정하기</b>
+                </b-button>
+                <b-button class="m-1" variant="danger" @click="deleteMember"
+                  ><b-icon icon="trash"></b-icon><b> 회원삭제</b></b-button
+                >
+              </b-col>
+              <b-col class="text-right">
+                <b-button
+                  @click="goBack"
+                  variant="outline-secondary"
+                  class="m-1"
+                  ><b-icon icon="backspace"></b-icon><b> 뒤로가기</b></b-button
+                >
+              </b-col>
+            </b-row>
           </div>
           <div v-else>
             <b-button variant="primary" class="m-1" @click="changeMode"
