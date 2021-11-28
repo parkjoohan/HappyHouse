@@ -24,9 +24,9 @@
         -	Header : 기능별 버튼 구현 / 대표 이미지 클릭 시 메인 페이지로 전환
         -	Footer : 기능별 버튼 구현 / 유용한 사이트 이동 버튼 구현 / 제작자 정보 (연락처, GITHUB)<br />
    * 회원기능
-     '#' 로그인<br />
+     · 로그인<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770548-366d2b6e-4ce7-4914-abf8-3c81115e3d2c.png)<br />
-     '#' 회원가입<br />
+     · 회원가입<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770579-63c89c90-64fd-4e2d-b32d-6825e935209b.png)
         -	사용자 정보 조회하여 회원 중복 확인
         -	카카오 우편주소 API 사용하여 주소 세팅
