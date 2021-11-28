@@ -1,4 +1,4 @@
-1. 요구사항 정의서
+1. 요구사항 정의서<br />
    * 전체<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770163-1c3ad03e-6900-41f7-a129-6c54723bd704.png)
    * HappyHouseMain 관리<br />
@@ -16,3 +16,11 @@
 3. 클래스 다이어그램<br />
 ![image](https://user-images.githubusercontent.com/85006536/143770419-32b8fe65-53f9-42b9-b880-118561c4a2b8.png)
 <br /><br /><br /><br />
+4. 화면 설계서<br />
+   * 메인 화면<br />
+     ![image](https://user-images.githubusercontent.com/85006536/143770496-843cca05-265c-49d9-9e03-f8cdf52cf0dc.png)<br />
+     ![image](https://user-images.githubusercontent.com/85006536/143770501-20852126-4106-4c39-98c4-c938adec69a6.png)<br />
+        -	Header, footer 구현
+        -	Header : 기능별 버튼 구현 / 대표 이미지 클릭 시 메인 페이지로 전환
+        -	Footer : 기능별 버튼 구현 / 유용한 사이트 이동 버튼 구현 / 제작자 정보 (연락처, GITHUB)
+
