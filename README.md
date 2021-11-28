@@ -14,3 +14,11 @@
    * 부동산 뉴스 관리
    
      ![image](https://user-images.githubusercontent.com/85006536/143770282-c3e8f970-1340-4a34-a1c9-9e20bf30beac.png)
+
+
+
+2. 테이블 구조도
+
+![image](https://user-images.githubusercontent.com/85006536/143770335-6cfcaadc-fa74-461c-8fd0-7fe56478f801.png)
+
+
