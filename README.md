@@ -46,6 +46,23 @@
      ![image](https://user-images.githubusercontent.com/85006536/143770785-16c2256b-32ec-4976-ac04-da1ae3d17951.png)<br />
         -	공공데이터를 활용하여 확인하고자 하는 지역의 지역 정보들을 확인 가능
         -	지역 정보를 원 그래프를 통해 쉽게 확인 가능<br /><br />
+   * 게시판 기능<br />
+     · 목록<br />
+     ![image](https://user-images.githubusercontent.com/85006536/143770881-5a48a296-c43a-4268-a293-83ee5686ff5f.png)<br />
+        -	현재 작성되어 있는 게시글을 목록을 통해 확인 가능
+        -	게시판 CRUD 기능 구현 / 게시글 검색 기능 및 페이징 처리 
+        -	글을 쓸 경우 작성자는 현재 로그인 된 아이디로 사용<br /><br />
+     · 상세보기<br />
+     ![image](https://user-images.githubusercontent.com/85006536/143770912-a24a7a5b-cdcd-4c4a-9e14-f7740f91bc9f.png)<br />
+        -	게시판 목록에서 게시글 선택 시 상세보기 페이지로 전환
+        -	게시글 수정 및 삭제 버튼은 본인이 작성한 게시글 선택 시에만 활성화
+        -	본인 글이 아닐 시 목록 버튼만 활성화<br /><br />
+     · 글 수정하기<br />
+     ![image](https://user-images.githubusercontent.com/85006536/143770937-aba3f608-382a-4c34-ae40-5af254db3f37.png)<br />
+        -	게시글 수정 시 작성자는 변경되지 않아야 함으로 제목 및 내용 수정만 가능<br /><br />
+   * 뉴스 기능<br />
+     · 뉴스 목록<br />
+ 
 
 
 
