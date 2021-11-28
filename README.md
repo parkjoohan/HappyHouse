@@ -13,4 +13,6 @@
 2. 테이블 구조도<br />
 ![image](https://user-images.githubusercontent.com/85006536/143770335-6cfcaadc-fa74-461c-8fd0-7fe56478f801.png)
 <br /><br /><br /><br />
-
+3. 클래스 다이어그램<br />
+![image](https://user-images.githubusercontent.com/85006536/143770419-32b8fe65-53f9-42b9-b880-118561c4a2b8.png)
+<br /><br /><br /><br />
