@@ -10,7 +10,7 @@
    * 부동산 뉴스 관리<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770282-c3e8f970-1340-4a34-a1c9-9e20bf30beac.png)
 <br /><br /><br /><br />
-2. 테이블 구조도<br />
+2. 테이블 구조도<br /> 
 ![image](https://user-images.githubusercontent.com/85006536/143770335-6cfcaadc-fa74-461c-8fd0-7fe56478f801.png)
 <br /><br /><br /><br />
 3. 클래스 다이어그램<br />
