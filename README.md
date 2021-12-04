@@ -16,7 +16,7 @@
 3. 클래스 다이어그램<br />
 ![image](https://user-images.githubusercontent.com/85006536/143770419-32b8fe65-53f9-42b9-b880-118561c4a2b8.png)
 <br /><br /><br /><br />
-4. 화면 설계서<br />
+4. 화면 설계서<br /> 
    * 메인 화면<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770496-843cca05-265c-49d9-9e03-f8cdf52cf0dc.png)<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770501-20852126-4106-4c39-98c4-c938adec69a6.png)<br />
