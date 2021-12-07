@@ -1,5 +1,5 @@
 1. 요구사항 정의서<br />
-   * 전체<br /> 
+   * 전체<br />  
      ![image](https://user-images.githubusercontent.com/85006536/143770163-1c3ad03e-6900-41f7-a129-6c54723bd704.png)
    * HappyHouseMain 관리<br />
      ![image](https://user-images.githubusercontent.com/85006536/143770253-c1a3dd66-357f-4970-8dcb-427828a53fa5.png)
